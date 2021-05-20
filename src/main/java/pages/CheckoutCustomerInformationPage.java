@@ -62,5 +62,4 @@ public class CheckoutCustomerInformationPage extends HeaderPage {
     public String getErrorMessageText() {
         return driver.findElement(ERROR_MESSAGE_TEXT).getText();
     }
-
 }
