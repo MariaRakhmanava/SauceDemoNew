@@ -12,10 +12,10 @@ public class ProductSpecificationPage extends HeaderPage {
         super(driver);
     }
 
-    public static final String PRODUCT_ITEM_NAME = "//*[contains(text(), '%s')]";
-    public static final By PRODUCT_PRICE = By.xpath("//*[@class='inventory_details_price']");
-    public static final By PRODUCT_DESCRIPTION = By.cssSelector(".inventory_details_desc ");
-    public static final By ADD_TO_CART_BUTTON = By.xpath("//*[contains(text(), 'Add to cart')]");
+    private static final String PRODUCT_ITEM_NAME = "//*[contains(text(), '%s')]";
+    private static final By PRODUCT_PRICE = By.xpath("//*[@class='inventory_details_price']");
+    private static final By PRODUCT_DESCRIPTION = By.cssSelector(".inventory_details_desc ");
+    private static final By ADD_TO_CART_BUTTON = By.xpath("//*[contains(text(), 'Add to cart')]");
 
     public String getProductItemName(String productName) {
         return driver.findElement(By.xpath(String.format(PRODUCT_ITEM_NAME, productName))).getText();

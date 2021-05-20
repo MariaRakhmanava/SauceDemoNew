@@ -53,7 +53,7 @@ public class CheckoutOverviewPage extends HeaderPage {
     }
 
     public int getNumberOfItems() {
-        String locatorToChooseAllItems = PRODUCT_PRICE.substring(58);
+        final String locatorToChooseAllItems = PRODUCT_PRICE.substring(58);
         List<WebElement> items = driver.findElements(By.xpath(locatorToChooseAllItems));
         return items.size();
     }

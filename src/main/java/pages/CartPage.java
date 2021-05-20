@@ -36,7 +36,7 @@ public class CartPage extends HeaderPage {
     }
 
     public void removeAllProductsFromTheCart() {
-        String locatorToChooseAllRemoveButtons = REMOVE_BUTTON.substring(48);
+        final String locatorToChooseAllRemoveButtons = REMOVE_BUTTON.substring(48);
         List<WebElement> allProducts = driver.findElements(By.xpath(locatorToChooseAllRemoveButtons));
         for (WebElement x : allProducts) {
             x.click();
@@ -52,7 +52,7 @@ public class CartPage extends HeaderPage {
     }
 
     public int getNumberOfItems() {
-        String locatorToChooseAllItems = PRODUCT_PRICE.substring(48);
+        final String locatorToChooseAllItems = PRODUCT_PRICE.substring(48);
         List<WebElement> items = driver.findElements(By.xpath(locatorToChooseAllItems));
         return items.size();
     }

@@ -12,11 +12,11 @@ public class ProductsPage extends HeaderPage {
         super(driver);
     }
 
-    public static final String ADD_PRODUCT_TO_CART_BUTTON = "//*[text()='%s']/ancestor::*[@class='inventory_item']//*[contains(text(),'Add to cart')]";
-    public static final String REMOVE_PRODUCT_FROM_CART_BUTTON = "//*[text()='%s']/ancestor::*[@class='inventory_item_description']//*[contains(text(),'Remove')]";
-    public static final String PRODUCT_PRICE = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item_description']//*[@class='inventory_item_price']";
-    public static final String PRODUCT_SPECIFICATION_LINK = "//*[text()='%s']";
-    public static final String PRODUCT_DESCRIPTION = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item_description']//*[@class='inventory_item_desc']";
+    private static final String ADD_PRODUCT_TO_CART_BUTTON = "//*[text()='%s']/ancestor::*[@class='inventory_item']//*[contains(text(),'Add to cart')]";
+    private static final String REMOVE_PRODUCT_FROM_CART_BUTTON = "//*[text()='%s']/ancestor::*[@class='inventory_item_description']//*[contains(text(),'Remove')]";
+    private static final String PRODUCT_PRICE = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item_description']//*[@class='inventory_item_price']";
+    private static final String PRODUCT_SPECIFICATION_LINK = "//*[text()='%s']";
+    private static final String PRODUCT_DESCRIPTION = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item_description']//*[@class='inventory_item_desc']";
 
 
     public void openPage() {
@@ -60,7 +60,7 @@ public class ProductsPage extends HeaderPage {
     }
 
     public int getTheNumberOfProductsOffered() {
-        String locatorToAllProducts = PRODUCT_DESCRIPTION.substring(75);
+        final String locatorToAllProducts = PRODUCT_DESCRIPTION.substring(75);
         List<WebElement> products = driver.findElements(By.xpath(locatorToAllProducts));
         return products.size();
     }
