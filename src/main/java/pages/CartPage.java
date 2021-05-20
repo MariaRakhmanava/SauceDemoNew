@@ -36,7 +36,8 @@ public class CartPage extends HeaderPage {
     }
 
     public void removeAllProductsFromTheCart() {
-        List<WebElement> allProducts = driver.findElements(By.xpath("//button[contains(text(), 'Remove')]"));
+        String locatorForAllRemoveButtons = REMOVE_BUTTON.substring(48);
+        List<WebElement> allProducts = driver.findElements(By.xpath(locatorForAllRemoveButtons));
         for (WebElement x : allProducts) {
             x.click();
         }
