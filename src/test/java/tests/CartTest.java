@@ -37,5 +37,4 @@ public class CartTest extends BaseTest {
         Assert.assertEquals(cartPage.getNumberOfItems(), 0);
 
     }
-
 }

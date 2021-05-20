@@ -48,5 +48,4 @@ public class CheckoutCustomerInformationTest extends BaseTest{
         checkoutCustomerInformationPage.omitPostalCodeAndContinue("Jane", "Doe");
         Assert.assertEquals(checkoutCustomerInformationPage.getErrorMessageText(), "Error: Postal Code is required");
     }
-
 }
