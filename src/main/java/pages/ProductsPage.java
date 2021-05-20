@@ -12,8 +12,8 @@ public class ProductsPage extends HeaderPage {
         super(driver);
     }
 
-    public static final String ADD_PRODUCT_TO_CART_BUTTON = "//*[text()='%s']/ancestor::*[@class='inventory_item']//*[text()='Add to cart']";
-    public static final String REMOVE_PRODUCT_FROM_CART_BUTTON = "//*[text()='%s']/ancestor::*[@class='inventory_item_description']//*[text()='Remove']";
+    public static final String ADD_PRODUCT_TO_CART_BUTTON = "//*[text()='%s']/ancestor::*[@class='inventory_item']//*[contains(text(),'Add to cart')]";
+    public static final String REMOVE_PRODUCT_FROM_CART_BUTTON = "//*[text()='%s']/ancestor::*[@class='inventory_item_description']//*[contains(text(),'Remove')]";
     public static final String PRODUCT_PRICE = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item_description']//*[@class='inventory_item_price']";
     public static final String PRODUCT_SPECIFICATION_LINK = "//*[text()='%s']";
     public static final String PRODUCT_DESCRIPTION = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item_description']//*[@class='inventory_item_desc']";
@@ -28,7 +28,8 @@ public class ProductsPage extends HeaderPage {
     }
 
     public void addAllProductsToTheCart() {
-        List<WebElement> allProducts = driver.findElements(By.xpath("//button[contains(text(), 'Add to cart')]"));
+        String locatorToChooseAllAddToCartButtons = ADD_PRODUCT_TO_CART_BUTTON.substring(53);
+        List<WebElement> allProducts = driver.findElements(By.xpath(locatorToChooseAllAddToCartButtons));
         for (WebElement x : allProducts) {
             x.click();
         }
@@ -39,7 +40,8 @@ public class ProductsPage extends HeaderPage {
     }
 
     public void removeAllProductsFromTheCart() {
-        List<WebElement> allProducts = driver.findElements(By.xpath("//button[contains(text(), 'Remove')]"));
+        String locatorToAllRemoveButtons = REMOVE_PRODUCT_FROM_CART_BUTTON.substring(65);
+        List<WebElement> allProducts = driver.findElements(By.xpath(locatorToAllRemoveButtons));
         for (WebElement x : allProducts) {
             x.click();
         }
@@ -58,7 +60,8 @@ public class ProductsPage extends HeaderPage {
     }
 
     public int getTheNumberOfProductsOffered() {
-        List<WebElement> products = driver.findElements(By.xpath("//*[@class='inventory_item_name']"));
+        String locatorToAllProducts = PRODUCT_DESCRIPTION.substring(75);
+        List<WebElement> products = driver.findElements(By.xpath(locatorToAllProducts));
         return products.size();
     }
 }

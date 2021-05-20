@@ -12,7 +12,7 @@ public class CheckoutOverviewPage extends HeaderPage {
         super(driver);
     }
 
-    private static final String PRODUCT_ITEM_NAME = "//*[contains(text(), '%s')]";
+    private static final String PRODUCT_ITEM_NAME = "//*[contains(text(),'%s')]";
     private static final String PRODUCT_QUANTITY = PRODUCT_ITEM_NAME + "/ancestor::*[@class='cart_item']//*[@class='cart_quantity']";
     private static final String PRODUCT_PRICE = PRODUCT_ITEM_NAME + "/ancestor::*[@class='cart_item']//*[@class='inventory_item_price']";
     private static final By PAYMENT_INFORMATION_FIELD = By.xpath("//*[contains(text(), 'Payment Information')]/parent::*[@class='summary_info']/*[contains(text(), 'SauceCard')]");
@@ -53,7 +53,8 @@ public class CheckoutOverviewPage extends HeaderPage {
     }
 
     public int getNumberOfItems() {
-        List<WebElement> items = driver.findElements(By.xpath("//*[@class='inventory_item_name']"));
+        String locatorToChooseAllItems = PRODUCT_PRICE.substring(58);
+        List<WebElement> items = driver.findElements(By.xpath(locatorToChooseAllItems));
         return items.size();
     }
 
