@@ -9,10 +9,11 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    private static final By USERNAME_INPUT = By.xpath("//*[@data-test='username']");
-    private static final By PASSWORD_INPUT = By.xpath("//*[@data-test='password']");
-    private static final By LOGIN_BUTTON = By.xpath("//*[@id='login-button']");
-    private static final By ERROR_MESSAGE_TEXT = By.xpath("//*[@class='error-message-container error']");
+    public static final By USERNAME_INPUT = By.xpath("//*[@data-test='username']");
+    public static final By PASSWORD_INPUT = By.xpath("//*[@data-test='password']");
+    public static final By LOGIN_BUTTON = By.xpath("//*[@id='login-button']");
+    public static final By ERROR_MESSAGE_TEXT = By.xpath("//*[@class='error-message-container error']");
+    public static final By CLOSE_ERROR_MESSAGE_BUTTON = By.xpath("//button[@class='error-button']");
 
     public void openPage() {
         driver.get("https://www.saucedemo.com/");
@@ -44,5 +45,9 @@ public class LoginPage extends BasePage {
 
     public String getErrorMessageText() {
         return driver.findElement(ERROR_MESSAGE_TEXT).getText();
+    }
+
+    public void closeErrorMessage() {
+        driver.findElement(CLOSE_ERROR_MESSAGE_BUTTON).click();
     }
 }

@@ -17,6 +17,7 @@ public class LoginTest extends BaseTest{
         loginPage.openPage();
         loginPage.login();
         Assert.assertEquals(loginPage.getErrorMessageText(), "Epic sadface: Username is required");
+        loginPage.closeErrorMessage();
     }
 
     @Test
@@ -24,7 +25,7 @@ public class LoginTest extends BaseTest{
         loginPage.openPage();
         loginPage.loginWithPasswordOnly("secret_sauce");
         Assert.assertEquals(loginPage.getErrorMessageText(),"Epic sadface: Username is required");
-
+        loginPage.closeErrorMessage();
     }
 
     @Test
@@ -32,6 +33,7 @@ public class LoginTest extends BaseTest{
         loginPage.openPage();
         loginPage.loginWithUsernameOnly("standard_user");
         Assert.assertEquals(loginPage.getErrorMessageText(), "Epic sadface: Password is required");
+        loginPage.closeErrorMessage();
     }
 
     @Test
@@ -39,6 +41,7 @@ public class LoginTest extends BaseTest{
         loginPage.openPage();
         loginPage.login("prohibited_user", "secret_sauce");
         Assert.assertEquals(loginPage.getErrorMessageText(), "Epic sadface: Username and password do not match any user in this service");
+        loginPage.closeErrorMessage();
     }
 
     @Test
@@ -46,5 +49,6 @@ public class LoginTest extends BaseTest{
         loginPage.openPage();
         loginPage.login("standard_user", "invalid_password");
         Assert.assertEquals(loginPage.getErrorMessageText(), "Epic sadface: Username and password do not match any user in this service");
+        loginPage.closeErrorMessage();
     }
 }
