@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class CheckoutOverviewPage extends HeaderPage implements iPagesUrls{
+public class CheckoutOverviewPage extends HeaderPage{
 
     public CheckoutOverviewPage(WebDriver driver) {
         super(driver);
@@ -24,8 +24,8 @@ public class CheckoutOverviewPage extends HeaderPage implements iPagesUrls{
     private static final By FINISH_BUTTON = By.xpath("//button[contains(text(), 'Finish')]");
 
 
-    public void openPage() {
-        driver.get(CHECKOUT_OVERVIEW_PAGE_URL);
+    public void openPage(String url) {
+        driver.get(url);
     }
 
     public String getProductQuantity(String productName) {

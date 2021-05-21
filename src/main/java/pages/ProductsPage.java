@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
-public class ProductsPage extends HeaderPage implements iPagesUrls{
+public class ProductsPage extends HeaderPage{
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -21,8 +21,8 @@ public class ProductsPage extends HeaderPage implements iPagesUrls{
     private static final By SORTING_PRINCIPLE_DROPDOWN_MENU = By.xpath("//select[@class='product_sort_container']");
 
 
-    public void openPage() {
-        driver.get(PRODUCTS_PAGE_URL);
+    public void openPage(String url) {
+        driver.get(url);
     }
 
     public void addProductToTheCart(String productName) {

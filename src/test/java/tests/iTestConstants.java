@@ -1,6 +1,12 @@
 package tests;
 
 public interface iTestConstants {
+    String ROOT_URL = "https://www.saucedemo.com/";
+    String PRODUCTS_PAGE_URL = ROOT_URL + "inventory.html";
+    String CART_PAGE_URL = ROOT_URL + "cart.html";
+    String CHECKOUT_CUSTOMER_INFORMATION_PAGE_URL = ROOT_URL + "checkout-step-one.html";
+    String CHECKOUT_OVERVIEW_PAGE_URL = ROOT_URL + "checkout-step-two.html";
+    String CHECKOUT_COMPLETE_PAGE_URL = ROOT_URL + "checkout-complete.html";
     String STANDARD_USER_LOGIN = "standard_user";
     String PASSWORD = "secret_sauce";
     String SAUCE_LABS_BOLT_T_SHIRT_PRODUCT = "Sauce Labs Bolt T-Shirt";
