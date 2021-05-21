@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
-public class ProductsPage extends HeaderPage {
+public class ProductsPage extends HeaderPage implements iPagesUrls{
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -22,7 +22,7 @@ public class ProductsPage extends HeaderPage {
 
 
     public void openPage() {
-        driver.get("https://www.saucedemo.com/inventory.html");
+        driver.get(PRODUCTS_PAGE_URL);
     }
 
     public void addProductToTheCart(String productName) {

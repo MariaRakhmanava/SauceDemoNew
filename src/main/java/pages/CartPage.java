@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class CartPage extends HeaderPage {
+public class CartPage extends HeaderPage implements iPagesUrls{
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -20,7 +20,7 @@ public class CartPage extends HeaderPage {
     private static final By CHECKOUT_BUTTON = By.xpath("//*[@id='checkout']");
 
     public void openPage() {
-        driver.get("https://www.saucedemo.com/cart.html");
+        driver.get(CART_PAGE_URL);
     }
 
     public String getProductPrice(String productName) {

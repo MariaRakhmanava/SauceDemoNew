@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage extends BasePage {
+public class LoginPage extends BasePage implements iPagesUrls{
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -16,7 +16,7 @@ public class LoginPage extends BasePage {
     public static final By CLOSE_ERROR_MESSAGE_BUTTON = By.xpath("//button[@class='error-button']");
 
     public void openPage() {
-        driver.get("https://www.saucedemo.com/");
+        driver.get(LOGIN_PAGE_URL);
     }
 
     public void login(String username, String password) {

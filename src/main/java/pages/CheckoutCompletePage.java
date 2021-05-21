@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutCompletePage extends HeaderPage {
+public class CheckoutCompletePage extends HeaderPage implements iPagesUrls{
 
     public CheckoutCompletePage(WebDriver driver) {
         super(driver);
@@ -12,7 +12,7 @@ public class CheckoutCompletePage extends HeaderPage {
     private static final By BACK_HOME_BUTTON = By.xpath("//*[@id='back-to-products']");
 
     public void openPage() {
-        driver.get("https://www.saucedemo.com/checkout-complete.html");
+        driver.get(CHECKOUT_COMPLETE_PAGE_URL);
     }
 
     public void goToThePreviousPage() {

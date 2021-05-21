@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutCustomerInformationPage extends HeaderPage {
+public class CheckoutCustomerInformationPage extends HeaderPage implements iPagesUrls{
 
     public CheckoutCustomerInformationPage(WebDriver driver) {
         super(driver);
@@ -17,7 +17,7 @@ public class CheckoutCustomerInformationPage extends HeaderPage {
     private static final By ERROR_MESSAGE_TEXT = By.xpath("//*[@class='error-message-container error']");
 
     public void openPage() {
-        driver.get("https://www.saucedemo.com/checkout-step-one.html");
+        driver.get(CHECKOUT_CUSTOMER_INFORMATION_PAGE_URL);
     }
 
     public void fillInputsAndContinue(String firstName, String lastName, String postalCode) {
