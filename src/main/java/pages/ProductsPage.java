@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class ProductsPage extends HeaderPage {
     private static final String PRODUCT_PRICE = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item_description']//*[@class='inventory_item_price']";
     private static final String PRODUCT_SPECIFICATION_LINK = "//*[text()='%s']";
     private static final String PRODUCT_DESCRIPTION = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item_description']//*[@class='inventory_item_desc']";
+    private static final By SORTING_PRINCIPLE_DROPDOWN_MENU = By.xpath("//select[@class='product_sort_container']");
 
 
     public void openPage() {
@@ -63,5 +65,22 @@ public class ProductsPage extends HeaderPage {
         final String locatorToAllProducts = PRODUCT_DESCRIPTION.substring(75);
         List<WebElement> products = driver.findElements(By.xpath(locatorToAllProducts));
         return products.size();
+    }
+
+    public void setProductsSorting(String sortingPrinciple) {
+        Select sortingOptions = new Select(driver.findElement(SORTING_PRINCIPLE_DROPDOWN_MENU));
+        switch(sortingPrinciple){
+            case "Name (Z to A)":
+                sortingOptions.selectByVisibleText("Name (Z to A)");
+                break;
+            case "Price (low to high)":
+                sortingOptions.selectByVisibleText("Price (low to high)");
+                break;
+            case "Price (high to low)":
+                sortingOptions.selectByVisibleText("Price (high to low)");
+                break;
+            default:
+                sortingOptions.selectByVisibleText("Name (A to Z)");
+        }
     }
 }
