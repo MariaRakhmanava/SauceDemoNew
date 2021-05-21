@@ -33,7 +33,7 @@ public class BaseTest {
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void endTest() {
         driver.quit();
     }
