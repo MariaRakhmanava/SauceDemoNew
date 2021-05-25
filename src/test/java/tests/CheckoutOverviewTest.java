@@ -1,6 +1,5 @@
 package tests;
 
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,7 +8,7 @@ public class CheckoutOverviewTest extends BaseTest implements iTestConstants{
     @Test
     public void checkInformationAboutProduct() {
         loginPage.openPage(ROOT_URL);
-        loginPage.login(STANDARD_USER_LOGIN, PASSWORD);
+        loginPage.login(STANDARD_USER_LOGIN, VALID_PASSWORD);
         productsPage.addProductToTheCart("Sauce Labs Bike Light");
         checkoutOverviewPage.openPage(CHECKOUT_OVERVIEW_PAGE_URL);
         Assert.assertEquals(checkoutOverviewPage.getNumberOfItems(), cartPage.getNumberOfItems());
