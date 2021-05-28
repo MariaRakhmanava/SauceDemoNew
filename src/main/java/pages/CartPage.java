@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class CartPage extends HeaderPage{
+public class CartPage extends CommonPartPage {
 
     public CartPage(WebDriver driver) {
         super(driver);

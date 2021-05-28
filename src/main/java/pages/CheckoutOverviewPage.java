@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class CheckoutOverviewPage extends HeaderPage{
+public class CheckoutOverviewPage extends CommonPartPage {
 
     public CheckoutOverviewPage(WebDriver driver) {
         super(driver);

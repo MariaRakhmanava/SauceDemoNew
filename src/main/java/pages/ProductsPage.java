@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
-public class ProductsPage extends HeaderPage{
+public class ProductsPage extends CommonPartPage {
 
     public ProductsPage(WebDriver driver) {
         super(driver);
