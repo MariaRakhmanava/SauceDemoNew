@@ -23,46 +23,55 @@ public class CheckoutOverviewPage extends CommonPartPage {
     private static final By CANCEL_BUTTON = By.xpath("//button[@id='cancel']");
     private static final By FINISH_BUTTON = By.xpath("//button[contains(text(), 'Finish')]");
 
-
     public void openPage(String url) {
         driver.get(url);
     }
 
     public String getProductQuantity(String productName) {
+        waitForElementDisplayed(String.format(PRODUCT_QUANTITY, productName), 7);
         return driver.findElement(By.xpath(String.format(PRODUCT_QUANTITY, productName))).getText();
     }
 
     public String getProductPrice(String productName) {
+        waitForElementDisplayed(String.format(PRODUCT_PRICE, productName), 7);
         return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
     }
 
     public String getPaymentInformation() {
+        waitForElementDisplayed(PAYMENT_INFORMATION_FIELD, 7);
         return driver.findElement(PAYMENT_INFORMATION_FIELD).getText();
     }
 
     public String getItemTotalWithoutTaxSum() {
+        waitForElementDisplayed(ITEM_TOTAL_FIELD, 7);
         return driver.findElement(ITEM_TOTAL_FIELD).getText();
     }
 
     public String getTaxSum() {
+        waitForElementDisplayed(TAX_FIELD, 7);
         return driver.findElement(TAX_FIELD).getText();
     }
 
     public String getTotalSum() {
+        waitForElementDisplayed(TOTAL_FIELD, 7);
         return driver.findElement(TOTAL_FIELD).getText();
     }
 
     public int getNumberOfItems() {
-        final String locatorToChooseAllItems = PRODUCT_PRICE.substring(58);
-        List<WebElement> items = driver.findElements(By.xpath(locatorToChooseAllItems));
+        String locator = PRODUCT_PRICE.substring(58);
+        By locatorsToChooseAllItems = By.xpath(locator);
+        waitForElementsDisplayed(locatorsToChooseAllItems, 10);
+        List<WebElement> items = driver.findElements(locatorsToChooseAllItems);
         return items.size();
     }
 
     public void cancelAndGoToThePreviousPage() {
+        waitForElementDisplayed(CANCEL_BUTTON, 10);
         driver.findElement(CANCEL_BUTTON).click();
     }
 
     public void finishCheckout() {
+        waitForElementDisplayed(FINISH_BUTTON, 10);
         driver.findElement(FINISH_BUTTON).click();
     }
 }

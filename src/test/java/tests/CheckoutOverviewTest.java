@@ -9,7 +9,7 @@ public class CheckoutOverviewTest extends BaseTest implements iTestConstants{
     public void checkInformationAboutProduct() {
         loginPage.openPage(ROOT_URL);
         loginPage.login(STANDARD_USER_LOGIN, VALID_PASSWORD);
-        productsPage.addProductToTheCart("Sauce Labs Bike Light");
+        productsPage.addProductToTheCart(SAUCE_LABS_BIKE_LIGHT_PRODUCT);
         checkoutOverviewPage.openPage(CHECKOUT_OVERVIEW_PAGE_URL);
         Assert.assertEquals(checkoutOverviewPage.getNumberOfItems(), cartPage.getNumberOfItems());
         Assert.assertEquals(checkoutOverviewPage.getProductPrice(SAUCE_LABS_BIKE_LIGHT_PRODUCT), cartPage.getProductPrice(SAUCE_LABS_BIKE_LIGHT_PRODUCT));

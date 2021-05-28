@@ -20,34 +20,48 @@ public class LoginPage extends BasePage{
     }
 
     public void login(String username, String password) {
+        waitForElementDisplayed(USERNAME_INPUT, 7);
         driver.findElement(USERNAME_INPUT).sendKeys(username);
+        waitForElementDisplayed(PASSWORD_INPUT, 7);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
+        waitForElementDisplayed(LOGIN_BUTTON, 7);
         driver.findElement(LOGIN_BUTTON).click();
     }
 
     public void login() {
+        waitForElementDisplayed(USERNAME_INPUT, 7);
         driver.findElement(USERNAME_INPUT).sendKeys("");
+        waitForElementDisplayed(PASSWORD_INPUT, 7);
         driver.findElement(PASSWORD_INPUT).sendKeys("");
+        waitForElementDisplayed(LOGIN_BUTTON, 7);
         driver.findElement(LOGIN_BUTTON).click();
     }
 
     public void loginWithUsernameOnly(String username) {
+        waitForElementDisplayed(USERNAME_INPUT, 7);
         driver.findElement(USERNAME_INPUT).sendKeys(username);
+        waitForElementDisplayed(PASSWORD_INPUT, 7);
         driver.findElement(PASSWORD_INPUT).sendKeys("");
+        waitForElementDisplayed(LOGIN_BUTTON, 7);
         driver.findElement(LOGIN_BUTTON).click();
     }
 
     public void loginWithPasswordOnly(String password) {
+        waitForElementDisplayed(USERNAME_INPUT, 7);
         driver.findElement(USERNAME_INPUT).sendKeys("");
+        waitForElementDisplayed(PASSWORD_INPUT, 7);
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
+        waitForElementDisplayed(LOGIN_BUTTON, 7);
         driver.findElement(LOGIN_BUTTON).click();
     }
 
     public String getErrorMessageText() {
+        waitForElementDisplayed(ERROR_MESSAGE_TEXT, 10);
         return driver.findElement(ERROR_MESSAGE_TEXT).getText();
     }
 
     public void closeErrorMessage() {
+        waitForElementDisplayed(CLOSE_ERROR_MESSAGE_BUTTON, 10);
         driver.findElement(CLOSE_ERROR_MESSAGE_BUTTON).click();
     }
 }

@@ -23,6 +23,10 @@ public interface iTestConstants {
     String SAUCE_LABS_FLEECE_JACKET_PRODUCT = "Sauce Labs Fleece Jacket";
     String TEST_ALL_THE_THINGS_T_SHIRT_RED_PRODUCT = "Test.allTheThings() T-Shirt (Red)";
 
+    String SAUCE_LABS_BACKPACK_PRODUCT_PRICE ="$29.99";
+
+    String SAUCE_LABS_BACKPACK_PRODUCT_DESCRIPTION ="carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.";
+
     String FIRST_NAME_INPUT_VALUE = "Jane";
     String LAST_NAME_INPUT_VALUE = "Doe";
     String POSTAL_CODE_INPUT_VALUE = "220018";

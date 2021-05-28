@@ -20,54 +20,69 @@ public class ProductsPage extends CommonPartPage {
     private static final String PRODUCT_DESCRIPTION = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item_description']//*[@class='inventory_item_desc']";
     private static final By SORTING_PRINCIPLE_DROPDOWN_MENU = By.xpath("//select[@class='product_sort_container']");
 
-
     public void openPage(String url) {
         driver.get(url);
     }
 
     public void addProductToTheCart(String productName) {
+        waitForElementDisplayed(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName), 10);
         driver.findElement(By.xpath(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName))).click();
     }
 
     public void addAllProductsToTheCart() {
-        String locatorToChooseAllAddToCartButtons = ADD_PRODUCT_TO_CART_BUTTON.substring(53);
-        List<WebElement> allProducts = driver.findElements(By.xpath(locatorToChooseAllAddToCartButtons));
+        String locator = ADD_PRODUCT_TO_CART_BUTTON.substring(53);
+        By locatorToChooseAllAddToCartButtons = By.xpath(locator);
+        waitForElementsDisplayed(locatorToChooseAllAddToCartButtons, 10);
+        List<WebElement> allProducts = driver.findElements(locatorToChooseAllAddToCartButtons);
         for (WebElement x : allProducts) {
             x.click();
         }
     }
 
     public void removeProductFromTheCart(String productName) {
+        waitForElementDisplayed(String.format(REMOVE_PRODUCT_FROM_CART_BUTTON, productName), 10);
         driver.findElement(By.xpath(String.format(REMOVE_PRODUCT_FROM_CART_BUTTON, productName))).click();
     }
 
     public void removeAllProductsFromTheCart() {
-        String locatorToAllRemoveButtons = REMOVE_PRODUCT_FROM_CART_BUTTON.substring(65);
-        List<WebElement> allProducts = driver.findElements(By.xpath(locatorToAllRemoveButtons));
+        String locator = REMOVE_PRODUCT_FROM_CART_BUTTON.substring(65);
+        By locatorToAllRemoveButtons = By.xpath(locator);
+        waitForElementsDisplayed(locatorToAllRemoveButtons, 10);
+        List<WebElement> allProducts = driver.findElements(locatorToAllRemoveButtons);
         for (WebElement x : allProducts) {
             x.click();
         }
     }
 
+    public By getProductLink(String productName) {
+        return By.xpath((String.format(PRODUCT_SPECIFICATION_LINK, productName)));
+    }
+
     public String getProductPrice(String productName) {
+        waitForElementDisplayed(String.format(PRODUCT_PRICE, productName), 10);
         return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
     }
 
     public String getProductDescription(String productName) {
+        waitForElementDisplayed(String.format(PRODUCT_DESCRIPTION, productName), 10);
         return driver.findElement(By.xpath(String.format(PRODUCT_DESCRIPTION, productName))).getText();
     }
 
     public void goToProductSpecificationPage(String productName) {
+        waitForElementDisplayed(String.format(PRODUCT_SPECIFICATION_LINK, productName), 10);
         driver.findElement(By.xpath(String.format(PRODUCT_SPECIFICATION_LINK, productName))).click();
     }
 
     public int getTheNumberOfProductsOffered() {
-        final String locatorToAllProducts = PRODUCT_DESCRIPTION.substring(75);
-        List<WebElement> products = driver.findElements(By.xpath(locatorToAllProducts));
+        String locator = PRODUCT_DESCRIPTION.substring(75);
+        By locatorsToAllProducts = By.xpath(locator);
+        waitForElementsDisplayed(locatorsToAllProducts, 10);
+        List<WebElement> products = driver.findElements(locatorsToAllProducts);
         return products.size();
     }
 
     public void setProductsSorting(String sortingPrinciple) {
+        waitForElementDisplayed(SORTING_PRINCIPLE_DROPDOWN_MENU, 10);
         Select sortingOptions = new Select(driver.findElement(SORTING_PRINCIPLE_DROPDOWN_MENU));
         switch(sortingPrinciple){
             case "Name (Z to A)":

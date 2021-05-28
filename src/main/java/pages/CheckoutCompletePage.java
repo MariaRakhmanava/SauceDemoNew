@@ -16,6 +16,7 @@ public class CheckoutCompletePage extends CommonPartPage {
     }
 
     public void goToThePreviousPage() {
+        waitForElementDisplayed(BACK_HOME_BUTTON, 5);
         driver.findElement(BACK_HOME_BUTTON).click();
     }
 }

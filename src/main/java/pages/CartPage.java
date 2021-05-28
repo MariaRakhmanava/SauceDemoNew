@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -24,36 +25,44 @@ public class CartPage extends CommonPartPage {
     }
 
     public String getProductPrice(String productName) {
+        waitForElementDisplayed(String.format(PRODUCT_PRICE, productName), 10);
         return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
     }
 
     public String getProductQuantity(String productName) {
+        waitForElementDisplayed(String.format(PRODUCT_QUANTITY, productName), 10);
         return driver.findElement(By.xpath(String.format(PRODUCT_QUANTITY, productName))).getText();
     }
 
     public void removeProductFromTheCart(String productName) {
+        waitForElementDisplayed(String.format(REMOVE_BUTTON, productName), 10);
         driver.findElement(By.xpath(String.format(REMOVE_BUTTON, productName))).click();
     }
 
     public void removeAllProductsFromTheCart() {
-        final String locatorToChooseAllRemoveButtons = REMOVE_BUTTON.substring(48);
-        List<WebElement> allProducts = driver.findElements(By.xpath(locatorToChooseAllRemoveButtons));
+        String locator = REMOVE_BUTTON.substring(48);
+        By locatorsToChooseAllRemoveButtons = By.xpath(locator);
+        waitForElementsDisplayed(locatorsToChooseAllRemoveButtons, 10);
+        List<WebElement> allProducts = driver.findElements(locatorsToChooseAllRemoveButtons);
         for (WebElement x : allProducts) {
             x.click();
         }
     }
 
     public void continueShopping() {
+        waitForElementDisplayed(CONTINUE_SHOPPING_BUTTON, 10);
         driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
     }
 
     public void goToCheckout() {
+        waitForElementDisplayed(CHECKOUT_BUTTON, 10);
         driver.findElement(CHECKOUT_BUTTON).click();
     }
 
     public int getNumberOfItems() {
-        final String locatorToChooseAllItems = PRODUCT_PRICE.substring(48);
-        List<WebElement> items = driver.findElements(By.xpath(locatorToChooseAllItems));
+        String locator = PRODUCT_PRICE.substring(48);
+        By locatorToChooseAllItems = By.xpath(locator);
+        List<WebElement> items = driver.findElements(locatorToChooseAllItems);
         return items.size();
     }
 }
