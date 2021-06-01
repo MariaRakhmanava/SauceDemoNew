@@ -1,8 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
@@ -62,7 +60,12 @@ public class CartPage extends CommonPartPage {
     public int getNumberOfItems() {
         String locator = PRODUCT_PRICE.substring(48);
         By locatorToChooseAllItems = By.xpath(locator);
-        List<WebElement> items = driver.findElements(locatorToChooseAllItems);
-        return items.size();
+        try {
+            waitForElementDisplayed(locatorToChooseAllItems, 10);
+            List<WebElement> items = driver.findElements(locatorToChooseAllItems);
+            return items.size();
+        } catch (TimeoutException e){
+            return 0;
+        }
     }
 }
