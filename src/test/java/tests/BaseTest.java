@@ -22,7 +22,6 @@ public class BaseTest {
     ProductSpecificationPage productSpecificationPage;
     CheckoutCustomerInformationPage checkoutCustomerInformationPage;
     CheckoutOverviewPage checkoutOverviewPage;
-    LoginPageFactory loginPageFactory;
 
     @BeforeMethod
     public void initTest() {
@@ -45,6 +44,5 @@ public class BaseTest {
         productSpecificationPage = new ProductSpecificationPage(driver);
         checkoutCustomerInformationPage = new CheckoutCustomerInformationPage(driver);
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
-        loginPageFactory = new LoginPageFactory(driver);
     }
 }
