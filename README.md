@@ -5,8 +5,8 @@ Checks in the Login Tests:
 4. To check the input fields with invalid data
 
 Checks in the Products Tests:
-1. To check the products range in order to make sure all necessary items are offered
-2. To compare a product description/price/quantity with those on the Cart Page/Checkout Overview Page
+1. To check the products range in order to make sure all necessary items are offered (database)
+2. To compare a product description/price/quantity with those in database (on the Cart Page/Checkout Overview Pages)
 3. To sort products by name/price
 
 Checks in the Product Specification Tests:
