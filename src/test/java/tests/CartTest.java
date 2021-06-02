@@ -21,8 +21,8 @@ public class CartTest extends BaseTest implements iTestConstants{
         loginPage.openPage(ROOT_URL);
         loginPage.login(STANDARD_USER_LOGIN, VALID_PASSWORD);
         productsPage.goToProductSpecificationPage(SAUCE_LABS_ONESIE_PRODUCT);
-        String expectedPrice = productSpecificationPage.getProductPrice(SAUCE_LABS_ONESIE_PRODUCT);
-        productSpecificationPage.addProductToTheCart(SAUCE_LABS_ONESIE_PRODUCT);
+        String expectedPrice = productDetailsPage.getProductPrice(SAUCE_LABS_ONESIE_PRODUCT);
+        productDetailsPage.addProductToTheCart(SAUCE_LABS_ONESIE_PRODUCT);
         cartPage.openPage(CART_PAGE_URL);
         Assert.assertEquals(cartPage.getProductPrice(SAUCE_LABS_ONESIE_PRODUCT), expectedPrice);
     }

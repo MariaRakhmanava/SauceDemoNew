@@ -3,9 +3,9 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class ProductSpecificationPage extends GeneralPartPage {
+public class ProductDetailsPage extends GeneralPartPage {
 
-    public ProductSpecificationPage(WebDriver driver) {
+    public ProductDetailsPage(WebDriver driver) {
         super(driver);
     }
 
