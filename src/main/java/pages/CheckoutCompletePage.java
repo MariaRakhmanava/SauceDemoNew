@@ -1,23 +1,29 @@
 package pages;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import static consts.iURLsOfPages.CHECKOUT_COMPLETE_PAGE_URL;
 
 public class CheckoutCompletePage extends GeneralPartPage {
+
+    @FindBy(id = "back-to-products")
+    WebElement backHomeButton;
 
     public CheckoutCompletePage(WebDriver driver) {
         super(driver);
     }
 
-    private static final By BACK_HOME_BUTTON = By.xpath("//*[@id='back-to-products']");
-
-    @Override
-    public void openPage(String url) {
-        driver.get(url);
+    public CheckoutCompletePage openPage() {
+       super.openPage(CHECKOUT_COMPLETE_PAGE_URL);
+       return this;
     }
 
-    public void goToThePreviousPage() {
-        waitForElementDisplayed(BACK_HOME_BUTTON, 5);
-        driver.findElement(BACK_HOME_BUTTON).click();
+    public CheckoutOverviewPage goToThePreviousPage() {
+        waitForElementDisplayed(backHomeButton, 10);
+        backHomeButton.click();
+        return new CheckoutOverviewPage(driver);
     }
 }

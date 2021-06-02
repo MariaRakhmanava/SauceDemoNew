@@ -1,88 +1,93 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import static consts.iURLsOfPages.CHECKOUT_CUSTOMER_INFO_PAGE_URL;
 
 public class CheckoutCustomerInformationPage extends GeneralPartPage {
+
+    @FindBy(id = "first-name")
+    WebElement firstNameInput;
+
+    @FindBy(id = "last-name")
+    WebElement lastNameInput;
+
+    @FindBy(id = "postal-code")
+    WebElement zipOrPostalCodeInput;
+
+    @FindBy(id = "cancel")
+    WebElement cancelButton;
+
+    @FindBy(id = "continue")
+    WebElement continueButton;
+
+    @FindBy(xpath = "//*[@class='error-message-container error']")
+    WebElement errorMessage;
 
     public CheckoutCustomerInformationPage(WebDriver driver) {
         super(driver);
     }
 
-    private static final By FIRST_NAME_INPUT = By.xpath("//*[@id='first-name']");
-    private static final By LAST_NAME_INPUT = By.xpath("//*[@id='last-name']");
-    private static final By ZIP_OR_POSTAL_CODE_INPUT = By.xpath("//*[@id='postal-code']");
-    private static final By CANCEL_BUTTON = By.xpath("//*[@id='cancel']");
-    private static final By CONTINUE_BUTTON = By.xpath("//*[@id='continue']");
-    private static final By ERROR_MESSAGE_TEXT = By.xpath("//*[@class='error-message-container error']");
-
-    @Override
-    public void openPage(String url) {
-        driver.get(url);
+    public CheckoutCustomerInformationPage openPage() {
+        super.openPage(CHECKOUT_CUSTOMER_INFO_PAGE_URL);
+        return this;
     }
 
-    public void fillInputsAndContinue(String firstName, String lastName, String postalCode) {
-        waitForElementDisplayed(FIRST_NAME_INPUT, 7);
-        driver.findElement(FIRST_NAME_INPUT).sendKeys(firstName);
-        waitForElementDisplayed(LAST_NAME_INPUT, 7);
-        driver.findElement(LAST_NAME_INPUT).sendKeys(lastName);
-        waitForElementDisplayed(ZIP_OR_POSTAL_CODE_INPUT, 7);
-        driver.findElement(ZIP_OR_POSTAL_CODE_INPUT).sendKeys(postalCode);
-        waitForElementDisplayed(CONTINUE_BUTTON, 7);
-        driver.findElement(CONTINUE_BUTTON).click();
+    public CheckoutOverviewPage fillInputsAndContinue(String firstName, String lastName, String postalCode) {
+        waitForElementDisplayed(firstNameInput, 10);
+        firstNameInput.sendKeys(firstName);
+        lastNameInput.sendKeys(lastName);
+        zipOrPostalCodeInput.sendKeys(postalCode);
+        continueButton.click();
+        return new CheckoutOverviewPage(driver);
     }
 
-    public void leaveInputsEmptyAndContinue() {
-        waitForElementDisplayed(FIRST_NAME_INPUT, 7);
-        driver.findElement(FIRST_NAME_INPUT).sendKeys("");
-        waitForElementDisplayed(LAST_NAME_INPUT, 7);
-        driver.findElement(LAST_NAME_INPUT).sendKeys("");
-        waitForElementDisplayed(ZIP_OR_POSTAL_CODE_INPUT, 7);
-        driver.findElement(ZIP_OR_POSTAL_CODE_INPUT).sendKeys("");
-        waitForElementDisplayed(CONTINUE_BUTTON, 7);
-        driver.findElement(CONTINUE_BUTTON).click();
+    public CheckoutCustomerInformationPage leaveInputsEmptyAndContinue() {
+        waitForElementDisplayed(firstNameInput, 10);
+        firstNameInput.sendKeys("");
+        lastNameInput.sendKeys("");
+        zipOrPostalCodeInput.sendKeys("");
+        continueButton.click();
+        return this;
     }
 
-    public void omitFirstNameAndContinue(String lastName, String postalCode) {
-        waitForElementDisplayed(FIRST_NAME_INPUT, 7);
-        driver.findElement(FIRST_NAME_INPUT).sendKeys("");
-        waitForElementDisplayed(LAST_NAME_INPUT, 7);
-        driver.findElement(LAST_NAME_INPUT).sendKeys(lastName);
-        waitForElementDisplayed(ZIP_OR_POSTAL_CODE_INPUT, 7);
-        driver.findElement(ZIP_OR_POSTAL_CODE_INPUT).sendKeys(postalCode);
-        waitForElementDisplayed(CONTINUE_BUTTON, 7);
-        driver.findElement(CONTINUE_BUTTON).click();
+    public CheckoutCustomerInformationPage omitFirstNameAndContinue(String lastName, String postalCode) {
+        waitForElementDisplayed(firstNameInput, 10);
+        firstNameInput.sendKeys("");
+        lastNameInput.sendKeys(lastName);
+        zipOrPostalCodeInput.sendKeys(postalCode);
+        continueButton.click();
+        return this;
     }
 
-    public void omitLastNameAndContinue(String firstName, String postalCode) {
-        waitForElementDisplayed(FIRST_NAME_INPUT, 7);
-        driver.findElement(FIRST_NAME_INPUT).sendKeys(firstName);
-        waitForElementDisplayed(LAST_NAME_INPUT, 7);
-        driver.findElement(LAST_NAME_INPUT).sendKeys("");
-        waitForElementDisplayed(ZIP_OR_POSTAL_CODE_INPUT, 7);
-        driver.findElement(ZIP_OR_POSTAL_CODE_INPUT).sendKeys(postalCode);
-        waitForElementDisplayed(CONTINUE_BUTTON, 7);
-        driver.findElement(CONTINUE_BUTTON).click();
+    public CheckoutCustomerInformationPage omitLastNameAndContinue(String firstName, String postalCode) {
+        waitForElementDisplayed(firstNameInput, 10);
+        firstNameInput.sendKeys(firstName);
+        lastNameInput.sendKeys("");
+        zipOrPostalCodeInput.sendKeys(postalCode);
+        continueButton.click();
+        return this;
     }
 
-    public void omitPostalCodeAndContinue(String firstName, String lastName) {
-        waitForElementDisplayed(FIRST_NAME_INPUT, 7);
-        driver.findElement(FIRST_NAME_INPUT).sendKeys(firstName);
-        waitForElementDisplayed(LAST_NAME_INPUT, 7);
-        driver.findElement(LAST_NAME_INPUT).sendKeys(lastName);
-        waitForElementDisplayed(ZIP_OR_POSTAL_CODE_INPUT, 7);
-        driver.findElement(ZIP_OR_POSTAL_CODE_INPUT).sendKeys("");
-        waitForElementDisplayed(CONTINUE_BUTTON, 7);
-        driver.findElement(CONTINUE_BUTTON).click();
+    public CheckoutCustomerInformationPage omitPostalCodeAndContinue(String firstName, String lastName) {
+        waitForElementDisplayed(firstNameInput, 10);
+        firstNameInput.sendKeys(firstName);
+        lastNameInput.sendKeys(lastName);
+        zipOrPostalCodeInput.sendKeys("");
+        continueButton.click();
+        return this;
     }
 
-    public void cancelAndGoToThePreviousPage() {
-        waitForElementDisplayed(CANCEL_BUTTON, 10);
-        driver.findElement(CANCEL_BUTTON).click();
+    public CartPage cancelAndGoToThePreviousPage() {
+        waitForElementDisplayed(cancelButton, 10);
+        cancelButton.click();
+        return new CartPage(driver);
     }
 
     public String getErrorMessageText() {
-        waitForElementDisplayed(ERROR_MESSAGE_TEXT, 10);
-        return driver.findElement(ERROR_MESSAGE_TEXT).getText();
+        waitForElementDisplayed(errorMessage, 10);
+        return errorMessage.getText();
     }
 }

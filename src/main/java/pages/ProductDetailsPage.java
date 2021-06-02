@@ -2,40 +2,47 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+
+import java.util.List;
 
 public class ProductDetailsPage extends GeneralPartPage {
+
+    @FindBy(xpath = "//*[@class='inventory_details_price']")
+    WebElement productPrice;
+
+    @FindBy(css = ".inventory_details_desc")
+    WebElement productDescription;
+
+    @FindBy(xpath = "//*[contains(text(), 'Add to cart')]")
+    WebElement addToCartButton;
 
     public ProductDetailsPage(WebDriver driver) {
         super(driver);
     }
 
     public static final String PRODUCT_ITEM_NAME = "//*[contains(text(), '%s')]";
-    public static final By PRODUCT_PRICE = By.xpath("//*[@class='inventory_details_price']");
-    public static final By PRODUCT_DESCRIPTION = By.cssSelector(".inventory_details_desc");
-    public static final By ADD_TO_CART_BUTTON = By.xpath("//*[contains(text(), 'Add to cart')]");
-
-    @Override
-    public void openPage(String url) {
-        driver.get(url);
-    }
 
     public String getProductItemName(String productName) {
-        waitForElementDisplayed(String.format(PRODUCT_ITEM_NAME, productName), 7);
+        waitForElementDisplayed(String.format(PRODUCT_ITEM_NAME, productName), 10);
         return driver.findElement(By.xpath(String.format(PRODUCT_ITEM_NAME, productName))).getText();
     }
 
     public String getProductPrice(String productName) {
-        waitForElementDisplayed(PRODUCT_PRICE, 7);
-        return driver.findElement(PRODUCT_PRICE).getText();
+        waitForElementDisplayed(productPrice, 10);
+        return productPrice.getText();
     }
 
     public String getProductDescription(String productName) {
-        waitForElementDisplayed(PRODUCT_DESCRIPTION, 7);
-        return driver.findElement(PRODUCT_DESCRIPTION).getText();
+        waitForElementDisplayed(productDescription, 10);
+        return productDescription.getText();
     }
 
-    public void addProductToTheCart(String productName) {
-        waitForElementDisplayed(ADD_TO_CART_BUTTON, 7);
-        driver.findElement(ADD_TO_CART_BUTTON).click();
+    public ProductDetailsPage addProductToTheCart(String productName) {
+        waitForElementDisplayed(addToCartButton, 10);
+        addToCartButton.click();
+        return this;
     }
 }

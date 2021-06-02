@@ -1,12 +1,6 @@
 package tests;
 
 public interface iTestConstants {
-    String ROOT_URL = "https://www.saucedemo.com/";
-    String PRODUCTS_PAGE_URL = ROOT_URL + "inventory.html";
-    String CART_PAGE_URL = ROOT_URL + "cart.html";
-    String CHECKOUT_CUSTOMER_INFORMATION_PAGE_URL = ROOT_URL + "checkout-step-one.html";
-    String CHECKOUT_OVERVIEW_PAGE_URL = ROOT_URL + "checkout-step-two.html";
-    String CHECKOUT_COMPLETE_PAGE_URL = ROOT_URL + "checkout-complete.html";
 
     String STANDARD_USER_LOGIN = "standard_user";
     String VALID_PASSWORD = "secret_sauce";
@@ -23,10 +17,6 @@ public interface iTestConstants {
     String SAUCE_LABS_FLEECE_JACKET_PRODUCT = "Sauce Labs Fleece Jacket";
     String TEST_ALL_THE_THINGS_T_SHIRT_RED_PRODUCT = "Test.allTheThings() T-Shirt (Red)";
 
-    String SAUCE_LABS_BACKPACK_PRODUCT_PRICE ="$29.99";
-
-    String SAUCE_LABS_BACKPACK_PRODUCT_DESCRIPTION ="carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.";
-
     String FIRST_NAME_INPUT_VALUE = "Jane";
     String LAST_NAME_INPUT_VALUE = "Doe";
     String POSTAL_CODE_INPUT_VALUE = "220018";
@@ -37,4 +27,10 @@ public interface iTestConstants {
     String FIRST_NAME_REQUIRED_ERROR_MESSAGE_TEXT = "Error: First Name is required";
     String LAST_NAME_REQUIRED_ERROR_MESSAGE_TEXT = "Error: Last Name is required";
     String POSTAL_CODE_REQUIRED_ERROR_MESSAGE_TEXT = "Error: Postal Code is required";
+
+
+
+    String SAUCE_LABS_BACKPACK_PRODUCT_PRICE ="$29.99";
+
+    String SAUCE_LABS_BACKPACK_PRODUCT_DESCRIPTION ="carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.";
 }

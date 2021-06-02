@@ -3,10 +3,34 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
+import static consts.iURLsOfPages.CHECKOUT_OVERVIEW_PAGE_URL;
+
 public class CheckoutOverviewPage extends GeneralPartPage {
+
+   @FindBy(xpath = "//*[contains(text(), 'Payment Information')]/parent::*[@class='summary_info']/*[contains(text(), 'SauceCard')]")
+   WebElement paymentInformationField;
+
+    @FindBy(xpath = "//*[contains(text(),'Shipping Information')]/following-sibling::*[1]")
+    WebElement shippingInformationField;
+
+    @FindBy(xpath = "//*[@class='summary_subtotal_label']")
+    WebElement itemTotalField;
+
+    @FindBy(xpath = "//*[@class='summary_tax_label']")
+    WebElement taxField;
+
+    @FindBy(xpath = "//*[@class='summary_total_label']")
+    WebElement totalField;
+
+    @FindBy(xpath = "//button[@id='cancel']")
+    WebElement cancelButton;
+
+    @FindBy(xpath = "//button[contains(text(), 'Finish')]")
+    WebElement finishButton;
 
     public CheckoutOverviewPage(WebDriver driver) {
         super(driver);
@@ -15,17 +39,10 @@ public class CheckoutOverviewPage extends GeneralPartPage {
     private static final String PRODUCT_ITEM_NAME = "//*[contains(text(),'%s')]";
     private static final String PRODUCT_QUANTITY = PRODUCT_ITEM_NAME + "/ancestor::*[@class='cart_item']//*[@class='cart_quantity']";
     private static final String PRODUCT_PRICE = PRODUCT_ITEM_NAME + "/ancestor::*[@class='cart_item']//*[@class='inventory_item_price']";
-    private static final By PAYMENT_INFORMATION_FIELD = By.xpath("//*[contains(text(), 'Payment Information')]/parent::*[@class='summary_info']/*[contains(text(), 'SauceCard')]");
-    private static final By SHIPPING_INFORMATION_FIELD = By.xpath("//*[contains(text(),'Shipping Information')]/following-sibling::*[1]");
-    private static final By ITEM_TOTAL_FIELD = By.xpath("//*[@class='summary_subtotal_label']");
-    private static final By TAX_FIELD = By.xpath("//*[@class='summary_tax_label']");
-    private static final By TOTAL_FIELD = By.xpath("//*[@class='summary_total_label']");
-    private static final By CANCEL_BUTTON = By.xpath("//button[@id='cancel']");
-    private static final By FINISH_BUTTON = By.xpath("//button[contains(text(), 'Finish')]");
 
-    @Override
-    public void openPage(String url) {
-        driver.get(url);
+    public CheckoutOverviewPage openPage() {
+        super.openPage(CHECKOUT_OVERVIEW_PAGE_URL);
+        return this;
     }
 
     public String getProductQuantity(String productName) {
@@ -39,23 +56,23 @@ public class CheckoutOverviewPage extends GeneralPartPage {
     }
 
     public String getPaymentInformation() {
-        waitForElementDisplayed(PAYMENT_INFORMATION_FIELD, 7);
-        return driver.findElement(PAYMENT_INFORMATION_FIELD).getText();
+        waitForElementDisplayed(paymentInformationField, 10);
+        return paymentInformationField.getText();
     }
 
     public String getItemTotalWithoutTaxSum() {
-        waitForElementDisplayed(ITEM_TOTAL_FIELD, 7);
-        return driver.findElement(ITEM_TOTAL_FIELD).getText();
+        waitForElementDisplayed(itemTotalField, 10);
+        return itemTotalField.getText();
     }
 
     public String getTaxSum() {
-        waitForElementDisplayed(TAX_FIELD, 7);
-        return driver.findElement(TAX_FIELD).getText();
+        waitForElementDisplayed(taxField, 10);
+        return taxField.getText();
     }
 
     public String getTotalSum() {
-        waitForElementDisplayed(TOTAL_FIELD, 7);
-        return driver.findElement(TOTAL_FIELD).getText();
+        waitForElementDisplayed(totalField, 10);
+        return totalField.getText();
     }
 
     public int getNumberOfItems() {
@@ -66,13 +83,15 @@ public class CheckoutOverviewPage extends GeneralPartPage {
         return items.size();
     }
 
-    public void cancelAndGoToThePreviousPage() {
-        waitForElementDisplayed(CANCEL_BUTTON, 10);
-        driver.findElement(CANCEL_BUTTON).click();
+    public CheckoutCustomerInformationPage cancelAndGoToThePreviousPage() {
+        waitForElementDisplayed(cancelButton, 10);
+        cancelButton.click();
+        return new CheckoutCustomerInformationPage(driver);
     }
 
-    public void finishCheckout() {
-        waitForElementDisplayed(FINISH_BUTTON, 10);
-        driver.findElement(FINISH_BUTTON).click();
+    public CheckoutCompletePage finishCheckout() {
+        waitForElementDisplayed(finishButton, 10);
+        finishButton.click();
+        return new CheckoutCompletePage(driver);
     }
 }

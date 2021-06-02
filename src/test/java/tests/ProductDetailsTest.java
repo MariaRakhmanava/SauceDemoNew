@@ -7,9 +7,8 @@ public class ProductDetailsTest extends BaseTest implements iTestConstants {
 
     @Test
     public void checkProductCharacteristicsTest() {
-        loginPage.openPage(ROOT_URL);
-        loginPage.login(STANDARD_USER_LOGIN, VALID_PASSWORD);
-        productsPage.openPage(PRODUCTS_PAGE_URL);
+        loginPage.openPage()
+                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
         driver.findElement(productsPage.getProductLink(SAUCE_LABS_BACKPACK_PRODUCT)).click();
         Assert.assertEquals(productDetailsPage.getProductItemName(SAUCE_LABS_BACKPACK_PRODUCT), SAUCE_LABS_BACKPACK_PRODUCT);
         Assert.assertEquals(productDetailsPage.getProductDescription(SAUCE_LABS_BACKPACK_PRODUCT), SAUCE_LABS_BACKPACK_PRODUCT_DESCRIPTION);
