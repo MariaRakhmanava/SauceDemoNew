@@ -9,7 +9,7 @@ Checks in the Products Tests:
 2. To compare a product description/price/quantity with those in database (on the Cart Page/Checkout Overview Pages)
 3. To sort products by name/price
 
-Checks in the Product Specification Tests:
+Checks in the Product Details Tests:
 1. To compare the product's characteristics(item name, price, description) to those in the database
 
 Checks in the Cart Tests:
