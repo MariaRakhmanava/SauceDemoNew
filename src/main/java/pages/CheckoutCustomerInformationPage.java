@@ -6,9 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import static consts.iURLsOfPages.CHECKOUT_CUSTOMER_INFO_PAGE_URL;
 
-
 public class CheckoutCustomerInformationPage extends GeneralPartPage {
-
     @FindBy(id = "first-name")
     WebElement firstNameInput;
 

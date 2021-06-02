@@ -6,9 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import static consts.iURLsOfPages.CHECKOUT_COMPLETE_PAGE_URL;
 
-
 public class CheckoutCompletePage extends GeneralPartPage {
-
     @FindBy(id = "back-to-products")
     WebElement backHomeButton;
 

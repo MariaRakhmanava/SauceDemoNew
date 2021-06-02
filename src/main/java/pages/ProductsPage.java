@@ -11,9 +11,7 @@ import java.util.List;
 
 import static consts.iURLsOfPages.PRODUCTS_PAGE_URL;
 
-
 public class ProductsPage extends GeneralPartPage {
-
     @FindBy(xpath = "//select[@class='product_sort_container']")
     WebElement sortingDropdownMenu;
 

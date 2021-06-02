@@ -5,9 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-
 public class ProductDetailsPage extends GeneralPartPage {
-
     @FindBy(xpath = "//*[@class='inventory_details_price']")
     WebElement productPrice;
 

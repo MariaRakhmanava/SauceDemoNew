@@ -4,9 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-
 abstract class GeneralPartPage extends BasePage {
-
     @FindBy(id = "react-burger-menu-btn")
     WebElement openMenuButton;
 
