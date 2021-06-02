@@ -2,11 +2,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-import java.util.List;
-
-public class ProductSpecificationPage extends CommonPartPage {
+public class ProductSpecificationPage extends GeneralPartPage {
 
     public ProductSpecificationPage(WebDriver driver) {
         super(driver);
@@ -16,6 +13,11 @@ public class ProductSpecificationPage extends CommonPartPage {
     public static final By PRODUCT_PRICE = By.xpath("//*[@class='inventory_details_price']");
     public static final By PRODUCT_DESCRIPTION = By.cssSelector(".inventory_details_desc");
     public static final By ADD_TO_CART_BUTTON = By.xpath("//*[contains(text(), 'Add to cart')]");
+
+    @Override
+    public void openPage(String url) {
+        driver.get(url);
+    }
 
     public String getProductItemName(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_ITEM_NAME, productName), 7);

@@ -15,6 +15,7 @@ public class LoginPage extends BasePage{
     public static final By ERROR_MESSAGE_TEXT = By.xpath("//*[@class='error-message-container error']");
     public static final By CLOSE_ERROR_MESSAGE_BUTTON = By.xpath("//button[@class='error-button']");
 
+    @Override
     public void openPage(String url) {
         driver.get(url);
     }

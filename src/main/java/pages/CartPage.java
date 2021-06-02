@@ -1,11 +1,10 @@
 package pages;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-public class CartPage extends CommonPartPage {
+public class CartPage extends GeneralPartPage {
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -18,6 +17,7 @@ public class CartPage extends CommonPartPage {
     private static final By CONTINUE_SHOPPING_BUTTON = By.xpath("//*[@id='continue-shopping']");
     private static final By CHECKOUT_BUTTON = By.xpath("//*[@id='checkout']");
 
+    @Override
     public void openPage(String url) {
         driver.get(url);
     }

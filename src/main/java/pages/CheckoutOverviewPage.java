@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class CheckoutOverviewPage extends CommonPartPage {
+public class CheckoutOverviewPage extends GeneralPartPage {
 
     public CheckoutOverviewPage(WebDriver driver) {
         super(driver);
@@ -23,6 +23,7 @@ public class CheckoutOverviewPage extends CommonPartPage {
     private static final By CANCEL_BUTTON = By.xpath("//button[@id='cancel']");
     private static final By FINISH_BUTTON = By.xpath("//button[contains(text(), 'Finish')]");
 
+    @Override
     public void openPage(String url) {
         driver.get(url);
     }

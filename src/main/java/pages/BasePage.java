@@ -15,6 +15,8 @@ abstract class BasePage {
         this.driver = driver;
     }
 
+    abstract void openPage(String url);
+
     public void waitForElementDisplayed(By elementLocator, int timeout) {
         wait = new WebDriverWait(driver, timeout);
         wait.until(ExpectedConditions.visibilityOfElementLocated(elementLocator));

@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutCompletePage extends CommonPartPage {
+public class CheckoutCompletePage extends GeneralPartPage {
 
     public CheckoutCompletePage(WebDriver driver) {
         super(driver);
@@ -11,6 +11,7 @@ public class CheckoutCompletePage extends CommonPartPage {
 
     private static final By BACK_HOME_BUTTON = By.xpath("//*[@id='back-to-products']");
 
+    @Override
     public void openPage(String url) {
         driver.get(url);
     }

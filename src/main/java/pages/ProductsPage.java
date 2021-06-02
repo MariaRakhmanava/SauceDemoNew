@@ -5,9 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProductsPage extends CommonPartPage {
+public class ProductsPage extends GeneralPartPage {
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -19,7 +20,9 @@ public class ProductsPage extends CommonPartPage {
     private static final String PRODUCT_SPECIFICATION_LINK = "//*[text()='%s']";
     private static final String PRODUCT_DESCRIPTION = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item_description']//*[@class='inventory_item_desc']";
     private static final By SORTING_PRINCIPLE_DROPDOWN_MENU = By.xpath("//select[@class='product_sort_container']");
+    private static final By INVENTORY_ITEM_NAME_ELEMENT = By.xpath("//*[@class='inventory_item_name']");
 
+    @Override
     public void openPage(String url) {
         driver.get(url);
     }
@@ -97,5 +100,19 @@ public class ProductsPage extends CommonPartPage {
             default:
                 sortingOptions.selectByVisibleText("Name (A to Z)");
         }
+    }
+
+    public List<String> getListOfInventoryItemsNames() {
+        waitForElementsDisplayed(INVENTORY_ITEM_NAME_ELEMENT, 10);
+        List<WebElement> list = driver.findElements(INVENTORY_ITEM_NAME_ELEMENT);
+        List<String> listOfNames = new ArrayList<>(6);
+        for (WebElement item : list) {
+             listOfNames.add(item.getText());
+        }
+        return listOfNames;
+    }
+
+    public void goToCartByCartIcon() {
+       super.goToCart();
     }
 }

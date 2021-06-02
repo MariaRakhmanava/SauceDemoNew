@@ -36,6 +36,18 @@ public class CartTest extends BaseTest implements iTestConstants{
         cartPage.openPage(CART_PAGE_URL);
         cartPage.removeAllProductsFromTheCart();
         Assert.assertEquals(cartPage.getNumberOfItems(), 0);
+    }
 
+    @Test
+    public void checkCartLinkTest() {
+        loginPage.openPage(ROOT_URL);
+        loginPage.login(STANDARD_USER_LOGIN, VALID_PASSWORD);
+        productsPage.addProductToTheCart(TEST_ALL_THE_THINGS_T_SHIRT_RED_PRODUCT);
+        productsPage.goToCartByCartIcon();
+        Assert.assertEquals(cartPage.getNumberOfItems(), 1);
+        cartPage.continueShopping();
+        productsPage.addProductToTheCart(SAUCE_LABS_FLEECE_JACKET_PRODUCT);
+        productsPage.goToCartByCartIcon();
+        Assert.assertEquals(cartPage.getNumberOfItems(), 2);
     }
 }

@@ -4,9 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 
-abstract class CommonPartPage extends BasePage {
+abstract class GeneralPartPage extends BasePage {
 
-    public CommonPartPage(WebDriver driver) {
+    public GeneralPartPage(WebDriver driver) {
         super(driver);
     }
 
@@ -20,6 +20,9 @@ abstract class CommonPartPage extends BasePage {
     private static final By TWITTER_LINK = By.xpath("//*[contains(text(),'Twitter')]");
     private static final By FACEBOOK_LINK = By.xpath("//*[contains(text(),'Facebook')]");
     private static final By LINKEDIN_LINK = By.xpath("//*[contains(text(),'LinkedIn')]");
+
+    @Override
+    abstract void openPage(String url);
 
     public void goToAllItemsSection() {
         waitForElementDisplayed(OPEN_MENU_BUTTON, 10);

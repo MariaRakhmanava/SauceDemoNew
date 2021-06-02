@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CheckoutCustomerInformationPage extends CommonPartPage {
+public class CheckoutCustomerInformationPage extends GeneralPartPage {
 
     public CheckoutCustomerInformationPage(WebDriver driver) {
         super(driver);
@@ -16,6 +16,7 @@ public class CheckoutCustomerInformationPage extends CommonPartPage {
     private static final By CONTINUE_BUTTON = By.xpath("//*[@id='continue']");
     private static final By ERROR_MESSAGE_TEXT = By.xpath("//*[@class='error-message-container error']");
 
+    @Override
     public void openPage(String url) {
         driver.get(url);
     }
