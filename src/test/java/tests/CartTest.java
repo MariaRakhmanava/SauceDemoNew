@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 
 
 public class CartTest extends BaseTest implements iTestConstants{
-
     @Test
     public void addProductToTheCartFromProductsPageTest() {
         loginPage.openPage()

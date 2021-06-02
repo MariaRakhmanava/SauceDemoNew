@@ -7,6 +7,7 @@ import java.util.List;
 
 import static consts.iURLsOfPages.CART_PAGE_URL;
 
+
 public class CartPage extends GeneralPartPage {
 
     @FindBy(id = "continue-shopping")

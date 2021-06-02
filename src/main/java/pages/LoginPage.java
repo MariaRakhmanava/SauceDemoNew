@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import static consts.iURLsOfPages.LOGIN_PAGE_URL;
 
+
 public class LoginPage extends GeneralPartPage {
 
     @FindBy(xpath = "//*[@data-test='username']")

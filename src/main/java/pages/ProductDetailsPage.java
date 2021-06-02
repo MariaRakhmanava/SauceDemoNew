@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-import java.util.List;
-
 public class ProductDetailsPage extends GeneralPartPage {
 
     @FindBy(xpath = "//*[@class='inventory_details_price']")

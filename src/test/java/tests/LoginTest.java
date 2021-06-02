@@ -1,11 +1,10 @@
 package tests;
 
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginTest extends BaseTest implements iTestConstants{
 
+public class LoginTest extends BaseTest implements iTestConstants{
     @Test
     public void loginWithValidDataTest() {
         loginPage.openPage()

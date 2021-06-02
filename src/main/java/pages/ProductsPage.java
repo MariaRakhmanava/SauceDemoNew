@@ -1,17 +1,16 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static consts.iURLsOfPages.PRODUCTS_PAGE_URL;
+
 
 public class ProductsPage extends GeneralPartPage {
 
@@ -30,7 +29,6 @@ public class ProductsPage extends GeneralPartPage {
     private static final String PRODUCT_PRICE = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item_description']//*[@class='inventory_item_price']";
     private static final String PRODUCT_DETAILS_LINK = "//*[text()='%s']";
     private static final String PRODUCT_DESCRIPTION = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item_description']//*[@class='inventory_item_desc']";
-
 
     public ProductsPage openPage() {
        super.openPage(PRODUCTS_PAGE_URL);

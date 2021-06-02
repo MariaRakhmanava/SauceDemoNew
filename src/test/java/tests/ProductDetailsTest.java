@@ -3,8 +3,8 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ProductDetailsTest extends BaseTest implements iTestConstants {
 
+public class ProductDetailsTest extends BaseTest implements iTestConstants {
     @Test
     public void checkProductCharacteristicsTest() {
         loginPage.openPage()

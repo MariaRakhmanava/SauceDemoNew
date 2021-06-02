@@ -28,8 +28,6 @@ public interface iTestConstants {
     String LAST_NAME_REQUIRED_ERROR_MESSAGE_TEXT = "Error: Last Name is required";
     String POSTAL_CODE_REQUIRED_ERROR_MESSAGE_TEXT = "Error: Postal Code is required";
 
-
-
     String SAUCE_LABS_BACKPACK_PRODUCT_PRICE ="$29.99";
 
     String SAUCE_LABS_BACKPACK_PRODUCT_DESCRIPTION ="carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.";

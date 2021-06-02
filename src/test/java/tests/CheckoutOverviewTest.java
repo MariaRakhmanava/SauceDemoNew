@@ -6,8 +6,8 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class CheckoutOverviewTest extends BaseTest implements iTestConstants{
 
+public class CheckoutOverviewTest extends BaseTest implements iTestConstants{
     @Test
     public void checkTheNumberOfProductItemsInTheOrderTest() {
         loginPage.openPage()

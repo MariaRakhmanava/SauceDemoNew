@@ -9,6 +9,7 @@ import java.util.List;
 
 import static consts.iURLsOfPages.CHECKOUT_OVERVIEW_PAGE_URL;
 
+
 public class CheckoutOverviewPage extends GeneralPartPage {
 
    @FindBy(xpath = "//*[contains(text(), 'Payment Information')]/parent::*[@class='summary_info']/*[contains(text(), 'SauceCard')]")
