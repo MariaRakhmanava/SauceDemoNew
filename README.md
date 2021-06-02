@@ -14,7 +14,7 @@ Checks in the Product Details Tests:
 
 Checks in the Cart Tests:
 1. To check all the ways to add a product to the cart (from the Products Page, the Product Specification Page, the Cart Page by clicking Continue Shopping button)
-2. To add all the products to the cart (to check that several products are shown appropriately in the cart)
+2. To add all the products to the cart (in order to check that several products are shown appropriately in the cart)
 3. To remove a product/products from the Cart
 
 Checks in the Checkout Customer Information Tests:
