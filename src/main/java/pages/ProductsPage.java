@@ -1,9 +1,11 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -125,5 +127,9 @@ public class ProductsPage extends GeneralPartPage {
     public CartPage goToCartByCartIcon() {
         super.goToCart();
         return new CartPage(driver);
+    }
+
+    public void moveToProductDetailsPage(String element) {
+        driver.findElement(this.getProductLink(element)).click();
     }
 }
