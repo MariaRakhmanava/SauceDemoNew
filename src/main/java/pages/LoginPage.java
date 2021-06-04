@@ -62,10 +62,4 @@ public class LoginPage extends HeaderMenuPage {
         waitForElementDisplayed(errorMessage, 10);
         return errorMessage.getText();
     }
-
-    public LoginPage closeErrorMessage() {
-        waitForElementDisplayed(closeErrorMessageButton, 10);
-        closeErrorMessageButton.click();
-        return this;
-    }
 }
