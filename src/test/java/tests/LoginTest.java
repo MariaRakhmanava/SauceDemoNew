@@ -8,6 +8,7 @@ public class LoginTest extends BaseTest implements iTestConstants{
     public void loginWithValidDataTest() {
         loginPage.openPage()
                  .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
+        Assert.assertTrue(productsPage.getPageTitle().isDisplayed());
     }
 
     @Test

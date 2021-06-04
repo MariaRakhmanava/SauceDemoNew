@@ -63,7 +63,12 @@ public class LoginPage extends GeneralPartPage {
         return this;
     }
 
-    public String getErrorMessage() {
+    public WebElement getErrorMessage() {
+        waitForElementDisplayed(errorMessage, 10);
+        return errorMessage;
+    }
+
+    public String getErrorMessageText() {
         waitForElementDisplayed(errorMessage, 10);
         return errorMessage.getText();
     }

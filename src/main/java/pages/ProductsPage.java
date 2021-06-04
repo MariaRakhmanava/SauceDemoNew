@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 
@@ -19,6 +20,12 @@ public class ProductsPage extends GeneralPartPage {
 
     @FindBy(xpath = "//*[@class='inventory_item_name']")
     List<WebElement> inventoryItemsNames;
+
+    @FindBys({
+            @FindBy(xpath = "//*[@class='title']"),
+            @FindBy(xpath = "//*[contains(text(),'Products')]")
+    })
+    WebElement pageTitle;
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -127,6 +134,11 @@ public class ProductsPage extends GeneralPartPage {
     public CartPage goToCartByCartIcon() {
         super.goToCart();
         return new CartPage(driver);
+    }
+
+    public WebElement getPageTitle() {
+        waitForElementDisplayed(pageTitle, 10);
+        return pageTitle;
     }
 
     public void moveToProductDetailsPage(String element) {
