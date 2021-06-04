@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 
 import java.util.List;
 
@@ -30,6 +31,12 @@ public class CheckoutOverviewPage extends GeneralPartPage {
 
     @FindBy(xpath = "//button[contains(text(), 'Finish')]")
     WebElement finishButton;
+
+    @FindBys({
+      @FindBy(xpath = "//*[@class='title']"),
+      @FindBy(xpath = "//*[contains(text(),'Overview')]")
+    })
+    WebElement pageTitle;
 
     public CheckoutOverviewPage(WebDriver driver) {
         super(driver);
@@ -92,5 +99,10 @@ public class CheckoutOverviewPage extends GeneralPartPage {
         waitForElementDisplayed(finishButton, 10);
         finishButton.click();
         return new CheckoutCompletePage(driver);
+    }
+
+    public WebElement getPageTitle() {
+        waitForElementDisplayed(pageTitle, 10);
+        return pageTitle;
     }
 }

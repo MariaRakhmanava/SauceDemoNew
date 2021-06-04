@@ -10,6 +10,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements iTestCo
                  .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
         checkoutCustomerInformationPage.openPage()
                                        .fillInputsAndContinue(FIRST_NAME_INPUT_VALUE, LAST_NAME_INPUT_VALUE, POSTAL_CODE_INPUT_VALUE);
+        Assert.assertTrue(checkoutOverviewPage.getPageTitle().isDisplayed());
     }
 
     @Test
