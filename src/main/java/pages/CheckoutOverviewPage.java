@@ -90,7 +90,7 @@ public class CheckoutOverviewPage extends HeaderMenuPage {
         return productsInTheOrder.size();
     }
 
-    public CheckoutCustomerInformationPage cancelAndGoToThePreviousPage() {
+    public CheckoutCustomerInformationPage clickCancelButton() {
         waitForElementDisplayed(cancelButton, 10);
         cancelButton.click();
         return new CheckoutCustomerInformationPage(driver);
