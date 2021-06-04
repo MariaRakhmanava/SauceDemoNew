@@ -4,9 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static consts.iURLsOfPages.CHECKOUT_COMPLETE_PAGE_URL;
+import static consts.IPagesUrls.CHECKOUT_COMPLETE_PAGE_URL;
 
-public class CheckoutCompletePage extends GeneralPartPage {
+public class CheckoutCompletePage extends HeaderMenuPage {
+
     @FindBy(id = "back-to-products")
     WebElement backHomeButton;
 
@@ -19,7 +20,7 @@ public class CheckoutCompletePage extends GeneralPartPage {
        return this;
     }
 
-    public CheckoutOverviewPage goToThePreviousPage() {
+    public CheckoutOverviewPage clickBackHomeButton() {
         waitForElementDisplayed(backHomeButton, 10);
         backHomeButton.click();
         return new CheckoutOverviewPage(driver);

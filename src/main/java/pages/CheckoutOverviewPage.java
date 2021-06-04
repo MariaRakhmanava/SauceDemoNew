@@ -8,11 +8,15 @@ import org.openqa.selenium.support.FindBys;
 
 import java.util.List;
 
-import static consts.iURLsOfPages.CHECKOUT_OVERVIEW_PAGE_URL;
+import static consts.IPagesUrls.CHECKOUT_OVERVIEW_PAGE_URL;
 
-public class CheckoutOverviewPage extends GeneralPartPage {
-   @FindBy(xpath = "//*[contains(text(), 'Payment Information')]/parent::*[@class='summary_info']/*[contains(text(), 'SauceCard')]")
-   WebElement paymentInformationField;
+public class CheckoutOverviewPage extends HeaderMenuPage {
+
+    @FindBy(xpath = "//*[@class='cart_item']")
+    List<WebElement> productsInTheOrder;
+
+    @FindBy(xpath = "//*[contains(text(), 'Payment Information')]/parent::*[@class='summary_info']/*[contains(text(), 'SauceCard')]")
+    WebElement paymentInformationField;
 
     @FindBy(xpath = "//*[contains(text(),'Shipping Information')]/following-sibling::*[1]")
     WebElement shippingInformationField;
@@ -52,12 +56,12 @@ public class CheckoutOverviewPage extends GeneralPartPage {
     }
 
     public String getProductQuantity(String productName) {
-        waitForElementDisplayed(String.format(PRODUCT_QUANTITY, productName), 7);
+        waitForElementDisplayed(String.format(PRODUCT_QUANTITY, productName), 10);
         return driver.findElement(By.xpath(String.format(PRODUCT_QUANTITY, productName))).getText();
     }
 
     public String getProductPrice(String productName) {
-        waitForElementDisplayed(String.format(PRODUCT_PRICE, productName), 7);
+        waitForElementDisplayed(String.format(PRODUCT_PRICE, productName), 10);
         return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
     }
 
@@ -82,11 +86,8 @@ public class CheckoutOverviewPage extends GeneralPartPage {
     }
 
     public int getNumberOfItems() {
-        String locator = PRODUCT_PRICE.substring(58);
-        By locatorsToChooseAllItems = By.xpath(locator);
-        waitForElementsDisplayed(locatorsToChooseAllItems, 10);
-        List<WebElement> items = driver.findElements(locatorsToChooseAllItems);
-        return items.size();
+        waitForElementsDisplayed(productsInTheOrder, 10);
+        return productsInTheOrder.size();
     }
 
     public CheckoutCustomerInformationPage cancelAndGoToThePreviousPage() {
@@ -95,7 +96,7 @@ public class CheckoutOverviewPage extends GeneralPartPage {
         return new CheckoutCustomerInformationPage(driver);
     }
 
-    public CheckoutCompletePage finishCheckout() {
+    public CheckoutCompletePage clickFinishButton() {
         waitForElementDisplayed(finishButton, 10);
         finishButton.click();
         return new CheckoutCompletePage(driver);

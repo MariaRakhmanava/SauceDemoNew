@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 abstract class BasePage {
+
     WebDriver driver;
     WebDriverWait wait;
 

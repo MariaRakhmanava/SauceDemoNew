@@ -4,9 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static consts.iURLsOfPages.CHECKOUT_CUSTOMER_INFO_PAGE_URL;
+import static consts.IPagesUrls.CHECKOUT_CUSTOMER_INFO_PAGE_URL;
 
-public class CheckoutCustomerInformationPage extends GeneralPartPage {
+public class CheckoutCustomerInformationPage extends HeaderMenuPage {
+
     @FindBy(id = "first-name")
     WebElement firstNameInput;
 
@@ -34,7 +35,7 @@ public class CheckoutCustomerInformationPage extends GeneralPartPage {
         return this;
     }
 
-    public CheckoutOverviewPage fillInputsAndContinue(String firstName, String lastName, String postalCode) {
+    public CheckoutOverviewPage enter(String firstName, String lastName, String postalCode) {
         waitForElementDisplayed(firstNameInput, 10);
         firstNameInput.sendKeys(firstName);
         lastNameInput.sendKeys(lastName);
@@ -43,16 +44,7 @@ public class CheckoutCustomerInformationPage extends GeneralPartPage {
         return new CheckoutOverviewPage(driver);
     }
 
-    public CheckoutCustomerInformationPage leaveInputsEmptyAndContinue() {
-        waitForElementDisplayed(firstNameInput, 10);
-        firstNameInput.sendKeys("");
-        lastNameInput.sendKeys("");
-        zipOrPostalCodeInput.sendKeys("");
-        continueButton.click();
-        return this;
-    }
-
-    public CheckoutCustomerInformationPage omitFirstNameAndContinue(String lastName, String postalCode) {
+    public CheckoutCustomerInformationPage omitFirstNameAndEnter(String lastName, String postalCode) {
         waitForElementDisplayed(firstNameInput, 10);
         firstNameInput.sendKeys("");
         lastNameInput.sendKeys(lastName);
@@ -61,7 +53,7 @@ public class CheckoutCustomerInformationPage extends GeneralPartPage {
         return this;
     }
 
-    public CheckoutCustomerInformationPage omitLastNameAndContinue(String firstName, String postalCode) {
+    public CheckoutCustomerInformationPage omitLastNameAndEnter(String firstName, String postalCode) {
         waitForElementDisplayed(firstNameInput, 10);
         firstNameInput.sendKeys(firstName);
         lastNameInput.sendKeys("");
@@ -70,7 +62,7 @@ public class CheckoutCustomerInformationPage extends GeneralPartPage {
         return this;
     }
 
-    public CheckoutCustomerInformationPage omitPostalCodeAndContinue(String firstName, String lastName) {
+    public CheckoutCustomerInformationPage omitPostalCodeAndEnter(String firstName, String lastName) {
         waitForElementDisplayed(firstNameInput, 10);
         firstNameInput.sendKeys(firstName);
         lastNameInput.sendKeys(lastName);
@@ -79,7 +71,7 @@ public class CheckoutCustomerInformationPage extends GeneralPartPage {
         return this;
     }
 
-    public CartPage cancelAndGoToThePreviousPage() {
+    public CartPage clickCancelButton() {
         waitForElementDisplayed(cancelButton, 10);
         cancelButton.click();
         return new CartPage(driver);

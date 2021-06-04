@@ -3,12 +3,12 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ProductsTest extends BaseTest implements iTestConstants {
+public class ProductsTest extends BaseTest implements ITestConstants {
     @Test
     public void checkProductsRangeTest() {
         loginPage.openPage()
-                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD)
-                 .waitForPageLoaded();
+                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
+        productsPage.waitForPageLoaded();
         productsPage.setProductsSorting(BY_PRICE_HIGH_TO_LOW_PRODUCTS_SORTING_PRINCIPLE);
         Assert.assertEquals(productsPage.getTheNumberOfProductsOffered(), 6);
     }
@@ -16,8 +16,8 @@ public class ProductsTest extends BaseTest implements iTestConstants {
     @Test
     public void compareProductsPricesToThoseInDatabaseTest() {
         loginPage.openPage()
-                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD)
-                 .waitForPageLoaded();
+                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
+        productsPage.waitForPageLoaded();
         for (String item : productsPage.getListOfInventoryItems()) {
             switch (item) {
                 case SAUCE_LABS_BACKPACK_PRODUCT:

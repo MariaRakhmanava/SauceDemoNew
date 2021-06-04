@@ -3,15 +3,12 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
-public class CheckoutOverviewTest extends BaseTest implements iTestConstants{
+public class CheckoutOverviewTest extends BaseTest implements ITestConstants {
     @Test
     public void checkTheNumberOfProductItemsInTheOrderTest() {
         loginPage.openPage()
-                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD)
-                 .addProductToTheCart(SAUCE_LABS_BIKE_LIGHT_PRODUCT)
+                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
+        productsPage.addProductToTheCart(SAUCE_LABS_BIKE_LIGHT_PRODUCT)
                  .addProductToTheCart(SAUCE_LABS_BACKPACK_PRODUCT);
         checkoutOverviewPage.openPage();
         Assert.assertEquals(checkoutOverviewPage.getNumberOfItems(), cartPage.getNumberOfItems());
@@ -21,12 +18,11 @@ public class CheckoutOverviewTest extends BaseTest implements iTestConstants{
     public void checkThePriceOfProductsInTheOrderTest() {
         loginPage.openPage()
                  .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
-        List<String> listOfProducts = Arrays.asList(SAUCE_LABS_BACKPACK_PRODUCT, SAUCE_LABS_BIKE_LIGHT_PRODUCT, SAUCE_LABS_BOLT_T_SHIRT_PRODUCT);
-        for (String product : listOfProducts) {
-        productsPage.addProductToTheCart(product);
-        }
+        productsPage.addProductToTheCart(SAUCE_LABS_BACKPACK_PRODUCT)
+                 .addProductToTheCart(SAUCE_LABS_BIKE_LIGHT_PRODUCT)
+                 .addProductToTheCart(SAUCE_LABS_BOLT_T_SHIRT_PRODUCT);
         checkoutOverviewPage.openPage();
-        for (String product : listOfProducts) {
+        for (String product : cartPage.getListOfProductsAddedToCart()) {
         Assert.assertEquals(checkoutOverviewPage.getProductPrice(product), cartPage.getProductPrice(product));
         }
     }
@@ -34,8 +30,8 @@ public class CheckoutOverviewTest extends BaseTest implements iTestConstants{
     @Test
     public void checkTheNumberOfProductsInTheOrderTest() {
         loginPage.openPage()
-                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD)
-                 .waitForPageLoaded();
+                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
+        productsPage.waitForPageLoaded();
         productsPage.addAllProductsToTheCart();
         checkoutOverviewPage.openPage()
                             .waitForPageLoaded();

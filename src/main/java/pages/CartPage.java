@@ -3,11 +3,19 @@ package pages;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static consts.iURLsOfPages.CART_PAGE_URL;
+import static consts.IPagesUrls.CART_PAGE_URL;
 
-public class CartPage extends GeneralPartPage {
+public class CartPage extends HeaderMenuPage {
+
+    @FindBy(xpath = "//*[@class='cart_item']")
+    List<WebElement> productsInTheCart;
+
+    @FindBy(xpath = "//button[contains(text(),'Remove')]")
+    List<WebElement> removeButtonsOfProductsInTheCart;
+
     @FindBy(id = "continue-shopping")
     WebElement continueShoppingButton;
 
@@ -18,10 +26,10 @@ public class CartPage extends GeneralPartPage {
         super(driver);
     }
 
-    private static final String PRODUCT_ITEM = "//*[text()='%s']/ancestor::*[@class='cart_item']";
-    private static final String PRODUCT_PRICE = PRODUCT_ITEM + "//*[@class='inventory_item_price']";
-    private static final String PRODUCT_QUANTITY = PRODUCT_ITEM + "//*[@class='cart_quantity']";
-    private static final String REMOVE_BUTTON = PRODUCT_ITEM + "//button[contains(text(), 'Remove')]";
+    private static final String PRODUCT_ITEM = "//*[text()='%s']";
+    private static final String PRODUCT_PRICE = PRODUCT_ITEM + "/ancestor::*[@class='cart_item']//*[@class='inventory_item_price']";
+    private static final String PRODUCT_QUANTITY = PRODUCT_ITEM + "/ancestor::*[@class='cart_item']//*[@class='cart_quantity']";
+    private static final String REMOVE_BUTTON = PRODUCT_ITEM + "/ancestor::*[@class='cart_item']//button[contains(text(), 'Remove')]";
 
     public CartPage openPage() {
         super.openPage(CART_PAGE_URL);
@@ -45,37 +53,47 @@ public class CartPage extends GeneralPartPage {
     }
 
     public CartPage removeAllProductsFromTheCart() {
-        String locator = REMOVE_BUTTON.substring(48);
-        By locatorsToChooseAllRemoveButtons = By.xpath(locator);
-        waitForElementsDisplayed(locatorsToChooseAllRemoveButtons, 10);
-        List<WebElement> allProducts = driver.findElements(locatorsToChooseAllRemoveButtons);
-        for (WebElement x : allProducts) {
-            x.click();
+        waitForElementsDisplayed(productsInTheCart, 10);
+        for (WebElement removeButtonOfProductInTheCart : removeButtonsOfProductsInTheCart) {
+            removeButtonOfProductInTheCart.click();
         }
         return this;
     }
 
-    public ProductsPage continueShopping() {
+    public ProductsPage clickContinueShoppingButton() {
         waitForElementDisplayed(continueShoppingButton, 10);
         continueShoppingButton.click();
         return new ProductsPage(driver);
     }
 
-    public CheckoutCustomerInformationPage goToCheckout() {
+    public CheckoutCustomerInformationPage clickCheckoutButton() {
         waitForElementDisplayed(checkoutButton, 10);
         checkoutButton.click();
         return new CheckoutCustomerInformationPage(driver);
     }
 
     public int getNumberOfItems() {
-        String locator = PRODUCT_PRICE.substring(48);
-        By locatorToChooseAllItems = By.xpath(locator);
+        try {
+            waitForElementsDisplayed(productsInTheCart, 10);
+            return productsInTheCart.size();
+        } catch (TimeoutException e){
+            return 0;
+        }
+    }
+
+    public List<String> getListOfProductsAddedToCart() {
+        By locatorToChooseAllItems = By.xpath(PRODUCT_ITEM);
         try {
             waitForElementsDisplayed(locatorToChooseAllItems, 10);
             List<WebElement> items = driver.findElements(locatorToChooseAllItems);
-            return items.size();
+            List<String> productsNames = new ArrayList<>();
+            for (WebElement product : items) {
+                productsNames.add(product.getText());
+            }
+            return productsNames;
         } catch (TimeoutException e){
-            return 0;
+            List<String> emptyList = new ArrayList<>();
+            return emptyList;
         }
     }
 }

@@ -1,20 +1,28 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static consts.iURLsOfPages.PRODUCTS_PAGE_URL;
+import static consts.IPagesUrls.PRODUCTS_PAGE_URL;
 
-public class ProductsPage extends GeneralPartPage {
+public class ProductsPage extends HeaderMenuPage {
+
+    @FindBy(xpath = "//*[@class='inventory_item_name']")
+    List<WebElement> allProductsOffered;
+
+    @FindBy(xpath = "//*[contains(text(),'Add to cart')]")
+    List<WebElement> addToCartButtonsOfAllProducts;
+
+    @FindBy(xpath = "//*[contains(text(),'Remove')]")
+    List<WebElement> removeButtonsOfAllProducts;
+
     @FindBy(xpath = "//select[@class='product_sort_container']")
     WebElement sortingDropdownMenu;
 
@@ -43,18 +51,16 @@ public class ProductsPage extends GeneralPartPage {
     }
 
     public ProductsPage addProductToTheCart(String productName) {
+        List<WebElement> listOfProductsAddedToCart = new ArrayList<>();
         waitForElementDisplayed(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName), 10);
         driver.findElement(By.xpath(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName))).click();
         return this;
     }
 
     public ProductsPage addAllProductsToTheCart() {
-        String locator = ADD_PRODUCT_TO_CART_BUTTON.substring(53);
-        By locatorToChooseAllAddToCartButtons = By.xpath(locator);
-        waitForElementsDisplayed(locatorToChooseAllAddToCartButtons, 10);
-        List<WebElement> allProducts = driver.findElements(locatorToChooseAllAddToCartButtons);
-        for (WebElement x : allProducts) {
-            x.click();
+        waitForElementsDisplayed(allProductsOffered, 10);
+        for (WebElement addToCartButton : addToCartButtonsOfAllProducts) {
+            addToCartButton.click();
         }
         return this;
     }
@@ -66,17 +72,14 @@ public class ProductsPage extends GeneralPartPage {
     }
 
     public ProductsPage removeAllProductsFromTheCart() {
-        String locator = REMOVE_PRODUCT_FROM_CART_BUTTON.substring(65);
-        By locatorToAllRemoveButtons = By.xpath(locator);
-        waitForElementsDisplayed(locatorToAllRemoveButtons, 10);
-        List<WebElement> allProducts = driver.findElements(locatorToAllRemoveButtons);
-        for (WebElement x : allProducts) {
-            x.click();
+        waitForElementsDisplayed(allProductsOffered, 10);
+        for (WebElement removeButton : removeButtonsOfAllProducts) {
+            removeButton.click();
         }
         return this;
     }
 
-    public By getProductLink(String productName) {
+    public By getProductLinkLocator(String productName) {
         return By.xpath((String.format(PRODUCT_DETAILS_LINK, productName)));
     }
 
@@ -90,17 +93,14 @@ public class ProductsPage extends GeneralPartPage {
         return driver.findElement(By.xpath(String.format(PRODUCT_DESCRIPTION, productName))).getText();
     }
 
-    public void goToProductDetailsPage(String productName) {
+    public void clickAndGoToProductDetailsPage(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_DETAILS_LINK, productName), 10);
         driver.findElement(By.xpath(String.format(PRODUCT_DETAILS_LINK, productName))).click();
     }
 
     public int getTheNumberOfProductsOffered() {
-        String locator = PRODUCT_DESCRIPTION.substring(75);
-        By locatorsToAllProducts = By.xpath(locator);
-        waitForElementsDisplayed(locatorsToAllProducts, 10);
-        List<WebElement> products = driver.findElements(locatorsToAllProducts);
-        return products.size();
+        waitForElementsDisplayed(allProductsOffered, 10);
+        return allProductsOffered.size();
     }
 
     public ProductsPage setProductsSorting(String sortingPrinciple) {
@@ -131,17 +131,17 @@ public class ProductsPage extends GeneralPartPage {
         return listOfNames;
     }
 
-    public CartPage goToCartByCartIcon() {
+    public CartPage goToCartPageByCartIcon() {
         super.goToCart();
         return new CartPage(driver);
     }
 
-    public WebElement getPageTitle() {
+    public WebElement getPageTitleElement() {
         waitForElementDisplayed(pageTitle, 10);
         return pageTitle;
     }
 
-    public void moveToProductDetailsPage(String element) {
-        driver.findElement(this.getProductLink(element)).click();
+    public void clickProductNameToGoToProductDetailsPage(String element) {
+        driver.findElement(this.getProductLinkLocator(element)).click();
     }
 }

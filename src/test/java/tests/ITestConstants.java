@@ -1,6 +1,6 @@
 package tests;
 
-public interface iTestConstants {
+public interface ITestConstants {
     String STANDARD_USER_LOGIN = "standard_user";
     String VALID_PASSWORD = "secret_sauce";
 

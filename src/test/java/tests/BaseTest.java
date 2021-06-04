@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import pages.*;
 
 public class BaseTest {
+
     WebDriver driver;
     WebDriverWait wait;
     LoginPage loginPage;

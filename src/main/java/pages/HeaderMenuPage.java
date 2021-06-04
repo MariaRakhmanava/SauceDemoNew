@@ -4,7 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-abstract class GeneralPartPage extends BasePage {
+abstract class HeaderMenuPage extends BasePage {
+
     @FindBy(id = "react-burger-menu-btn")
     WebElement openMenuButton;
 
@@ -32,33 +33,34 @@ abstract class GeneralPartPage extends BasePage {
     @FindBy(xpath = "//*[contains(text(),'Linked')]")
     WebElement linkedInLink;
 
-    GeneralPartPage(WebDriver driver) {
+    HeaderMenuPage(WebDriver driver) {
         super(driver);
     }
 
-    public void goToAllItemsSection() {
+    public void clickOpenMenuButton() {
         waitForElementDisplayed(openMenuButton, 10);
+        openMenuButton.click();
+    }
+
+    public void goToAllItemsSection() {
         openMenuButton.click();
         waitForElementDisplayed(allItemsLink, 5);
         allItemsLink.click();
     }
 
     public void goToAboutSection() {
-        waitForElementDisplayed(openMenuButton, 10);
         openMenuButton.click();
         waitForElementDisplayed(aboutSidebarLink, 5);
         aboutSidebarLink.click();
     }
 
     public void goLogoutSection() {
-        waitForElementDisplayed(openMenuButton, 10);
         openMenuButton.click();
         waitForElementDisplayed(logoutSidebarLink, 5);
         logoutSidebarLink.click();
     }
 
     public void goToResetAppStateSection() {
-        waitForElementDisplayed(openMenuButton, 10);
         openMenuButton.click();
         waitForElementDisplayed(resetAppStateLink, 5);
         resetAppStateLink.click();

@@ -4,9 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static consts.iURLsOfPages.LOGIN_PAGE_URL;
+import static consts.IPagesUrls.LOGIN_PAGE_URL;
 
-public class LoginPage extends GeneralPartPage {
+public class LoginPage extends HeaderMenuPage {
+
     @FindBy(xpath = "//*[@data-test='username']")
     WebElement usernameInput;
 
@@ -30,24 +31,13 @@ public class LoginPage extends GeneralPartPage {
         super.openPage(LOGIN_PAGE_URL);
         return this;
     }
-
-    public ProductsPage login(String username, String password) {
+    public void login(String username, String password) {
         waitForElementDisplayed(usernameInput, 10);
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginButton.click();
-        return new ProductsPage(driver);
     }
-
-    public LoginPage login() {
-        waitForElementDisplayed(usernameInput, 10);
-        usernameInput.sendKeys("");
-        passwordInput.sendKeys("");
-        loginButton.click();
-        return this;
-    }
-
-    public LoginPage loginWithUsernameOnly(String username) {
+    public LoginPage loginWith(String username) {
         waitForElementDisplayed(usernameInput, 10);
         usernameInput.sendKeys(username);
         passwordInput.sendKeys("");
@@ -55,7 +45,7 @@ public class LoginPage extends GeneralPartPage {
         return this;
     }
 
-    public LoginPage loginWithPasswordOnly(String password) {
+    public LoginPage login(String password) {
         waitForElementDisplayed(usernameInput, 10);
         usernameInput.sendKeys("");
         passwordInput.sendKeys(password);
