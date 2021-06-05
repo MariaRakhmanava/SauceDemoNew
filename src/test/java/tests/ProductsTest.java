@@ -6,8 +6,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
 public class ProductsTest extends BaseTest implements ITestConstants {
 
     @BeforeClass
@@ -37,7 +35,7 @@ public class ProductsTest extends BaseTest implements ITestConstants {
                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
         productsPage.waitForPageLoaded();
         for (int i = 0; i < productsPage.getListOfInventoryItems().size(); i++) {
-            Assert.assertEquals(productsPage.getListOfInventoryItems().get(i), setListOfProducts().getProductsNames().get(i));
+            Assert.assertEquals(productsPage.getListOfInventoryItems().get(i), setListOfProducts().getListOfProductsNames().get(i));
         }
     }
 
@@ -47,7 +45,7 @@ public class ProductsTest extends BaseTest implements ITestConstants {
                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
         productsPage.waitForPageLoaded();
         for (int i = 0; i < productsPage.getListOfInventoryItems().size(); i++) {
-            Assert.assertEquals(productsPage.getListOfProductsPrices().get(i), setListOfProducts().getProductsPrices().get(i));
+            Assert.assertEquals(productsPage.getListOfProductsPrices().get(i), setListOfProducts().getListOfProductsPrices().get(i));
         }
     }
 }
