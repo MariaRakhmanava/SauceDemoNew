@@ -14,9 +14,6 @@ import static consts.IPagesUrls.PRODUCTS_PAGE_URL;
 
 public class ProductsPage extends HeaderMenuPage {
 
-    @FindBy(xpath = "//*[@class='inventory_item_name']")
-    List<WebElement> allProductsOffered;
-
     @FindBy(xpath = "//*[contains(text(),'Add to cart')]")
     List<WebElement> addToCartButtonsOfAllProducts;
 
@@ -28,6 +25,9 @@ public class ProductsPage extends HeaderMenuPage {
 
     @FindBy(xpath = "//*[@class='inventory_item_name']")
     List<WebElement> inventoryItemsNames;
+
+    @FindBy(xpath = "//*[@class='inventory_item_price']")
+    List<WebElement> productsPrices;
 
     @FindBys({
             @FindBy(xpath = "//*[@class='title']"),
@@ -58,7 +58,7 @@ public class ProductsPage extends HeaderMenuPage {
     }
 
     public ProductsPage addAllProductsToTheCart() {
-        waitForElementsDisplayed(allProductsOffered, 10);
+        waitForElementsDisplayed(inventoryItemsNames, 10);
         for (WebElement addToCartButton : addToCartButtonsOfAllProducts) {
             addToCartButton.click();
         }
@@ -72,7 +72,7 @@ public class ProductsPage extends HeaderMenuPage {
     }
 
     public ProductsPage removeAllProductsFromTheCart() {
-        waitForElementsDisplayed(allProductsOffered, 10);
+        waitForElementsDisplayed(inventoryItemsNames, 10);
         for (WebElement removeButton : removeButtonsOfAllProducts) {
             removeButton.click();
         }
@@ -99,8 +99,8 @@ public class ProductsPage extends HeaderMenuPage {
     }
 
     public int getTheNumberOfProductsOffered() {
-        waitForElementsDisplayed(allProductsOffered, 10);
-        return allProductsOffered.size();
+        waitForElementsDisplayed(inventoryItemsNames, 10);
+        return inventoryItemsNames.size();
     }
 
     public ProductsPage setProductsSorting(String sortingPrinciple) {
@@ -129,6 +129,15 @@ public class ProductsPage extends HeaderMenuPage {
              listOfNames.add(item.getText());
         }
         return listOfNames;
+    }
+
+    public List<String> getListOfProductsPrices() {
+        waitForElementsDisplayed(productsPrices, 10);
+        List<String> listOfPrices = new ArrayList<>(6);
+        for (WebElement item : productsPrices) {
+            listOfPrices.add(item.getText());
+        }
+        return listOfPrices;
     }
 
     public CartPage goToCartPageByCartIcon() {

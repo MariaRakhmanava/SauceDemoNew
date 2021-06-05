@@ -1,9 +1,27 @@
 package tests;
 
+import objects.ListOfProductsOffered;
+import objects.Product;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class ProductsTest extends BaseTest implements ITestConstants {
+
+    @BeforeClass
+    public ListOfProductsOffered setListOfProducts() {
+        ListOfProductsOffered listOfProductsOffered = new ListOfProductsOffered();
+        listOfProductsOffered.addProductToList(new Product("Sauce Labs Backpack", "$29.99"));
+        listOfProductsOffered.addProductToList(new Product("Sauce Labs Bike Light", "$9.99"));
+        listOfProductsOffered.addProductToList(new Product("Sauce Labs Bolt T-Shirt", "$15.99"));
+        listOfProductsOffered.addProductToList(new Product("Sauce Labs Fleece Jacket", "$49.99"));
+        listOfProductsOffered.addProductToList(new Product("Sauce Labs Onesie", "$7.99"));
+        listOfProductsOffered.addProductToList(new Product("Test.allTheThings() T-Shirt (Red)", "$15.99"));
+        return listOfProductsOffered;
+    }
+
     @Test
     public void checkProductsRangeTest() {
         loginPage.openPage()
@@ -14,31 +32,22 @@ public class ProductsTest extends BaseTest implements ITestConstants {
     }
 
     @Test
+    public void compareProductsNamesToThoseInDatabaseTest() {
+        loginPage.openPage()
+                .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
+        productsPage.waitForPageLoaded();
+        for (int i = 0; i < productsPage.getListOfInventoryItems().size(); i++) {
+            Assert.assertEquals(productsPage.getListOfInventoryItems().get(i), setListOfProducts().getProductsNames().get(i));
+        }
+    }
+
+    @Test
     public void compareProductsPricesToThoseInDatabaseTest() {
         loginPage.openPage()
-                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
+                .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
         productsPage.waitForPageLoaded();
-        for (String item : productsPage.getListOfInventoryItems()) {
-            switch (item) {
-                case SAUCE_LABS_BACKPACK_PRODUCT:
-                    Assert.assertEquals(productsPage.getProductPrice(item), "$29.99");
-                    break;
-                case SAUCE_LABS_BIKE_LIGHT_PRODUCT:
-                    Assert.assertEquals(productsPage.getProductPrice(item), "$9.99");
-                    break;
-                case SAUCE_LABS_BOLT_T_SHIRT_PRODUCT:
-                    Assert.assertEquals(productsPage.getProductPrice(item), "$15.99");
-                    break;
-                case SAUCE_LABS_FLEECE_JACKET_PRODUCT:
-                    Assert.assertEquals(productsPage.getProductPrice(item), "$49.99");
-                    break;
-                case SAUCE_LABS_ONESIE_PRODUCT:
-                    Assert.assertEquals(productsPage.getProductPrice(item), "$7.99");
-                    break;
-                case TEST_ALL_THE_THINGS_T_SHIRT_RED_PRODUCT:
-                    Assert.assertEquals(productsPage.getProductPrice(item), "$15.99");
-                    break;
-            }
+        for (int i = 0; i < productsPage.getListOfInventoryItems().size(); i++) {
+            Assert.assertEquals(productsPage.getListOfProductsPrices().get(i), setListOfProducts().getProductsPrices().get(i));
         }
     }
 }
