@@ -1,5 +1,6 @@
 package pages;
 
+import objects.CustomerInformation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,40 +36,12 @@ public class CheckoutCustomerInformationPage extends HeaderMenuPage {
         return this;
     }
 
-    public CheckoutOverviewPage enter(String firstName, String lastName, String postalCode) {
+    public void enter(CustomerInformation customerInfo) {
         waitForElementDisplayed(firstNameInput, 10);
-        firstNameInput.sendKeys(firstName);
-        lastNameInput.sendKeys(lastName);
-        zipOrPostalCodeInput.sendKeys(postalCode);
+        firstNameInput.sendKeys(customerInfo.getFirstName());
+        lastNameInput.sendKeys(customerInfo.getLastName());
+        zipOrPostalCodeInput.sendKeys(customerInfo.getPostalCode());
         continueButton.click();
-        return new CheckoutOverviewPage(driver);
-    }
-
-    public CheckoutCustomerInformationPage omitFirstNameAndEnter(String lastName, String postalCode) {
-        waitForElementDisplayed(firstNameInput, 10);
-        firstNameInput.sendKeys("");
-        lastNameInput.sendKeys(lastName);
-        zipOrPostalCodeInput.sendKeys(postalCode);
-        continueButton.click();
-        return this;
-    }
-
-    public CheckoutCustomerInformationPage omitLastNameAndEnter(String firstName, String postalCode) {
-        waitForElementDisplayed(firstNameInput, 10);
-        firstNameInput.sendKeys(firstName);
-        lastNameInput.sendKeys("");
-        zipOrPostalCodeInput.sendKeys(postalCode);
-        continueButton.click();
-        return this;
-    }
-
-    public CheckoutCustomerInformationPage omitPostalCodeAndEnter(String firstName, String lastName) {
-        waitForElementDisplayed(firstNameInput, 10);
-        firstNameInput.sendKeys(firstName);
-        lastNameInput.sendKeys(lastName);
-        zipOrPostalCodeInput.sendKeys("");
-        continueButton.click();
-        return this;
     }
 
     public CartPage clickCancelButton() {
