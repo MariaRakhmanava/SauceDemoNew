@@ -7,7 +7,7 @@ public class ProductDetailsTest extends BaseTest implements ITestConstants {
     @Test
     public void checkProductCharacteristicsTest() {
         loginPage.openPage()
-                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
+                 .login(standardUser());
         productsPage.clickProductNameToGoToProductDetailsPage(SAUCE_LABS_BACKPACK_PRODUCT);
         Assert.assertEquals(productDetailsPage.getProductItemName(SAUCE_LABS_BACKPACK_PRODUCT), SAUCE_LABS_BACKPACK_PRODUCT);
         Assert.assertEquals(productDetailsPage.getProductDescription(SAUCE_LABS_BACKPACK_PRODUCT), SAUCE_LABS_BACKPACK_PRODUCT_DESCRIPTION);

@@ -1,5 +1,6 @@
 package pages;
 
+import objects.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,26 +32,11 @@ public class LoginPage extends HeaderMenuPage {
         super.openPage(LOGIN_PAGE_URL);
         return this;
     }
-    public void login(String username, String password) {
+    public void login(User user) {
         waitForElementDisplayed(usernameInput, 10);
-        usernameInput.sendKeys(username);
-        passwordInput.sendKeys(password);
+        usernameInput.sendKeys(user.getLogin());
+        passwordInput.sendKeys(user.getPassword());
         loginButton.click();
-    }
-    public LoginPage loginWith(String username) {
-        waitForElementDisplayed(usernameInput, 10);
-        usernameInput.sendKeys(username);
-        passwordInput.sendKeys("");
-        loginButton.click();
-        return this;
-    }
-
-    public LoginPage login(String password) {
-        waitForElementDisplayed(usernameInput, 10);
-        usernameInput.sendKeys("");
-        passwordInput.sendKeys(password);
-        loginButton.click();
-        return this;
     }
 
     public WebElement getErrorMessage() {
