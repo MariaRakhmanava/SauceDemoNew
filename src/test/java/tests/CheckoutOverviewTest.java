@@ -35,7 +35,7 @@ public class CheckoutOverviewTest extends BaseTest implements ITestConstants {
         productsPage.addAllProductsToTheCart();
         checkoutOverviewPage.openPage()
                             .waitForPageLoaded();
-        for (String productItem : productsPage.getListOfInventoryItems()) {
+        for (String productItem : productsPage.getListOfProductsNames()) {
         Assert.assertEquals(checkoutOverviewPage.getProductQuantity(productItem), cartPage.getProductQuantity(productItem));
         }
     }

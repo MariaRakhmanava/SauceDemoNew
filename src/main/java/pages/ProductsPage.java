@@ -122,7 +122,7 @@ public class ProductsPage extends HeaderMenuPage {
         return this;
     }
 
-    public List<String> getListOfInventoryItems() {
+    public List<String> getListOfProductsNames() {
         waitForElementsDisplayed(inventoryItemsNames, 10);
         List<String> listOfNames = new ArrayList<>(6);
         for (WebElement item : inventoryItemsNames) {

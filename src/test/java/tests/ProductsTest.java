@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class ProductsTest extends BaseTest implements ITestConstants {
 
     @BeforeClass
-    public ListOfProductsOffered setListOfProducts() {
+    public ListOfProductsOffered setListOfProductsOffered() {
         ListOfProductsOffered listOfProductsOffered = new ListOfProductsOffered();
         listOfProductsOffered.addProductToList(new Product("Sauce Labs Backpack", "$29.99"));
         listOfProductsOffered.addProductToList(new Product("Sauce Labs Bike Light", "$9.99"));
@@ -34,8 +34,8 @@ public class ProductsTest extends BaseTest implements ITestConstants {
         loginPage.openPage()
                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
         productsPage.waitForPageLoaded();
-        for (int i = 0; i < productsPage.getListOfInventoryItems().size(); i++) {
-            Assert.assertEquals(productsPage.getListOfInventoryItems().get(i), setListOfProducts().getListOfProductsNames().get(i));
+        for (int i = 0; i < productsPage.getListOfProductsNames().size(); i++) {
+            Assert.assertEquals(productsPage.getListOfProductsNames().get(i), setListOfProductsOffered().getListOfProductsNames().get(i));
         }
     }
 
@@ -44,8 +44,8 @@ public class ProductsTest extends BaseTest implements ITestConstants {
         loginPage.openPage()
                 .login(STANDARD_USER_LOGIN, VALID_PASSWORD);
         productsPage.waitForPageLoaded();
-        for (int i = 0; i < productsPage.getListOfInventoryItems().size(); i++) {
-            Assert.assertEquals(productsPage.getListOfProductsPrices().get(i), setListOfProducts().getListOfProductsPrices().get(i));
+        for (int i = 0; i < productsPage.getListOfProductsNames().size(); i++) {
+            Assert.assertEquals(productsPage.getListOfProductsPrices().get(i), setListOfProductsOffered().getListOfProductsPrices().get(i));
         }
     }
 }
