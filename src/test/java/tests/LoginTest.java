@@ -2,32 +2,9 @@ package tests;
 
 import objects.User;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest implements ITestConstants {
-    @BeforeClass
-    public User setUpUserWithEmptyLoginAndPassword() {
-        User user = new User("","");
-        return user;
-    }
-    public User setUpUserWithValidLoginOnly() {
-        User user = new User(VALID_LOGIN, "");
-        return user;
-    }
-    public User setUpUserWithValidPasswordOnly() {
-        User user = new User("", VALID_PASSWORD);
-        return user;
-    }
-    public User setUpUserWithInvalidUsername() {
-        User user = new User("prohibited_user", VALID_PASSWORD);
-        return user;
-    }
-    public User setUpUserWithInvalidPassword() {
-        User user = new User(VALID_LOGIN, "invalid_password");
-        return user;
-    }
-
     @Test
     public void loginWithValidDataTest() {
         loginPage.openPage()
@@ -38,35 +15,35 @@ public class LoginTest extends BaseTest implements ITestConstants {
     @Test
     public void loginLeavingAllInputFieldsEmptyTest() {
         loginPage.openPage()
-                 .login(setUpUserWithEmptyLoginAndPassword());
+                 .login(new User("", ""));
         Assert.assertEquals(loginPage.getErrorMessageText(), USERNAME_REQUIRED_ERROR_MESSAGE_TEXT);
     }
 
     @Test
     public void checkUsernameFillingNecessityTest() {
         loginPage.openPage()
-                 .login(setUpUserWithValidPasswordOnly());
+                 .login(new User("", VALID_PASSWORD));
         Assert.assertEquals(loginPage.getErrorMessageText(), USERNAME_REQUIRED_ERROR_MESSAGE_TEXT);
     }
 
     @Test
     public void checkPasswordFillingNecessityTest() {
         loginPage.openPage()
-                 .login(setUpUserWithValidLoginOnly());
+                 .login(new User(VALID_LOGIN, ""));
         Assert.assertEquals(loginPage.getErrorMessageText(), PASSWORD_REQUIRED_ERROR_MESSAGE_TEXT);
     }
 
     @Test
     public void loginWithInvalidUsernameTest() {
         loginPage.openPage()
-                 .login(setUpUserWithInvalidUsername());
+                 .login(new User("prohibited_user", VALID_PASSWORD));
         Assert.assertEquals(loginPage.getErrorMessageText(), NO_MATCHES_ERROR_MESSAGE_TEXT);
     }
 
     @Test
     public void loginWithInvalidPasswordTest() {
         loginPage.openPage()
-                 .login(setUpUserWithInvalidPassword());
+                 .login(new User(VALID_LOGIN, "invalid_password"));
         Assert.assertEquals(loginPage.getErrorMessageText(), NO_MATCHES_ERROR_MESSAGE_TEXT);
     }
 }
