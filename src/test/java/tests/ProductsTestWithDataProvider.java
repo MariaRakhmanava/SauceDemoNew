@@ -1,9 +1,6 @@
 package tests;
 
-import objects.ListOfProductsOffered;
-import objects.Product;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
