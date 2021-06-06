@@ -32,6 +32,7 @@ public class LoginPage extends HeaderMenuPage {
         super.openPage(LOGIN_PAGE_URL);
         return this;
     }
+
     public void login(User user) {
         waitForElementDisplayed(usernameInput, 10);
         usernameInput.sendKeys(user.getLogin());
