@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="SauceDemoNew Test Suite" parallel="tests" thread-count="2">
-    <test name="CartTest">
+    <test name="LoginTests">
+        <classes>
+            <class name="tests.LoginTest" />
+            <parameter name="login" value="standard_user"></parameter>
+            <parameter name="password" value="secret_sauce"></parameter>
+        </classes>
+    </test>
+    <test name="ProductsTests">
+        <classes>
+            <class name="tests.ProductsTest" />
+        </classes>
+    </test>
+    <test name="CartTests">
         <!-- <groups>-->
         <!-- <run>-->
         <!-- <include name="slow" />-->
@@ -9,11 +21,6 @@
         <!-- </groups>-->
         <classes>
             <class name="tests.CartTest" />
-        </classes>
-    </test>
-    <test name="ProductsTest">
-        <classes>
-            <class name="tests.ProductsTest" />
         </classes>
     </test>
 </suite>
