@@ -1,6 +1,5 @@
 package tests;
 
-import objects.CustomerInformation;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
