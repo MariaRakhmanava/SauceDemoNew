@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class ProductsTestWithDataProvider extends BaseTest implements ITestConstants {
 
-    @DataProvider(name = "ListOfProductsOffered")
+    @DataProvider(name = "Data about products offered")
     public Object[][] listOfProductsOffered() {
         return new Object[][]{
                 {"Sauce Labs Backpack", "$29.99"},
@@ -26,7 +26,7 @@ public class ProductsTestWithDataProvider extends BaseTest implements ITestConst
         Assert.assertEquals(productsPage.getTheNumberOfProductsOffered(), 6);
     }
 
-    @Test(dataProvider = "ListOfProductsOffered")
+    @Test(dataProvider = "Data about products offered")
     public void compareProductsNamesToThoseInDatabaseTest(String productName, String productPrice) {
         loginAndOpenProductsPage()
                              .waitForPageLoaded();
@@ -35,7 +35,7 @@ public class ProductsTestWithDataProvider extends BaseTest implements ITestConst
         }
     }
 
-    @Test(dataProvider = "ListOfProductsOffered")
+    @Test(dataProvider = "Data about products offered")
     public void compareProductsPricesToThoseInDatabaseTest(String productName, String productPrice) {
         loginAndOpenProductsPage()
                              .waitForPageLoaded();
