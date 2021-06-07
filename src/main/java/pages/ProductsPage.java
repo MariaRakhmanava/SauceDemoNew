@@ -1,10 +1,12 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -152,5 +154,14 @@ public class ProductsPage extends HeaderMenuPage {
 
     public void clickProductNameToGoToProductDetailsPage(String element) {
         driver.findElement(this.getProductLinkLocator(element)).click();
+    }
+
+    public ProductsPage waitForPageLoaded() {
+        new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+            }
+        };
+        return new ProductsPage(driver);
     }
 }

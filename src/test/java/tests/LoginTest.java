@@ -1,14 +1,12 @@
 package tests;
 
-import objects.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest implements ITestConstants {
     @Test
     public void loginWithValidDataTest() {
-        loginPage.openPage()
-                 .login(VALID_LOGIN, VALID_PASSWORD);
+        loginAndOpenProductsPage();
         Assert.assertTrue(productsPage.getPageTitleElement().isDisplayed());
     }
 

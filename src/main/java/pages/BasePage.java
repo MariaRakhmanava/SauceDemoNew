@@ -44,12 +44,4 @@ abstract class BasePage {
         wait = new WebDriverWait(driver, timeout);
         wait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }
-
-    public void waitForPageLoaded() {
-        new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver driver) {
-                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
-            }
-        };
-    }
 }

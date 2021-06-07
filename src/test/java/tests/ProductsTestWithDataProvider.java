@@ -20,18 +20,16 @@ public class ProductsTestWithDataProvider extends BaseTest implements ITestConst
 
     @Test
     public void checkProductsRangeTest() {
-        loginPage.openPage()
-                .login(VALID_LOGIN, VALID_PASSWORD);
-        productsPage.waitForPageLoaded();
-        productsPage.setProductsSorting(BY_PRICE_HIGH_TO_LOW_PRODUCTS_SORTING_PRINCIPLE);
+        loginAndOpenProductsPage()
+                             .waitForPageLoaded()
+                             .setProductsSorting(BY_PRICE_HIGH_TO_LOW_PRODUCTS_SORTING_PRINCIPLE);
         Assert.assertEquals(productsPage.getTheNumberOfProductsOffered(), 6);
     }
 
     @Test(dataProvider = "ListOfProductsOffered")
     public void compareProductsNamesToThoseInDatabaseTest(String productName, String productPrice) {
-        loginPage.openPage()
-                .login(VALID_LOGIN, VALID_PASSWORD);
-        productsPage.waitForPageLoaded();
+        loginAndOpenProductsPage()
+                             .waitForPageLoaded();
         for (int i = 0; i < productsPage.getListOfProductsNames().size(); i++) {
             Assert.assertEquals(productsPage.getListOfProductsNames().get(i), listOfProductsOffered()[i][0]);
         }
@@ -39,9 +37,8 @@ public class ProductsTestWithDataProvider extends BaseTest implements ITestConst
 
     @Test(dataProvider = "ListOfProductsOffered")
     public void compareProductsPricesToThoseInDatabaseTest(String productName, String productPrice) {
-        loginPage.openPage()
-                .login(VALID_LOGIN, VALID_PASSWORD);
-        productsPage.waitForPageLoaded();
+        loginAndOpenProductsPage()
+                             .waitForPageLoaded();
         for (int i = 0; i < productsPage.getListOfProductsNames().size(); i++) {
             Assert.assertEquals(productsPage.getListOfProductsPrices().get(i), listOfProductsOffered()[i][1]);
         }
