@@ -22,12 +22,6 @@ public class BaseTest {
     CheckoutCustomerInformationPage checkoutCustomerInformationPage;
     CheckoutOverviewPage checkoutOverviewPage;
 
-    @BeforeTest
-    public User standardUser() {
-        User user = new User("standard_user", "secret_sauce");
-        return user;
-    }
-
     @BeforeMethod
     public void initTest() {
         WebDriverManager.chromedriver().setup();
@@ -49,5 +43,11 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true)
     public void endTest() {
         driver.quit();
+    }
+
+    @BeforeTest
+    public User standardUser() {
+        User user = new User("standard_user", "secret_sauce");
+        return user;
     }
 }
