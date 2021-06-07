@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class ProductsTestWithDataProvider extends BaseTest implements ITestConstants {
 
-    @DataProvider(name = "ListOfProductsOffered")
+    @DataProvider(name = "Data about products offered")
     public Object[][] listOfProductsOffered() {
         return new Object[][]{
                 {"Sauce Labs Backpack", "$29.99"},
@@ -20,31 +20,27 @@ public class ProductsTestWithDataProvider extends BaseTest implements ITestConst
 
     @Test
     public void checkProductsRangeTest() {
-        loginPage.openPage()
-                .login(createStandardUser());
-        productsPage.waitForPageLoaded();
-        productsPage.setProductsSorting(BY_PRICE_HIGH_TO_LOW_PRODUCTS_SORTING_PRINCIPLE);
+        loginAndOpenProductsPage()
+                .waitForPageLoaded()
+                .setProductsSorting(BY_PRICE_HIGH_TO_LOW_PRODUCTS_SORTING_PRINCIPLE);
         Assert.assertEquals(productsPage.getTheNumberOfProductsOffered(), 6);
     }
 
-    @Test(dataProvider = "ListOfProductsOffered")
+    @Test(dataProvider = "Data about products offered")
     public void compareProductsNamesToThoseInDatabaseTest(String productName, String productPrice) {
-        loginPage.openPage()
-                .login(createStandardUser());
-        productsPage.waitForPageLoaded();
+        loginAndOpenProductsPage()
+                .waitForPageLoaded();
         for (int i = 0; i < productsPage.getListOfProductsNames().size(); i++) {
             Assert.assertEquals(productsPage.getListOfProductsNames().get(i), listOfProductsOffered()[i][0]);
         }
     }
 
-    @Test(dataProvider = "ListOfProductsOffered")
+    @Test(dataProvider = "Data about products offered")
     public void compareProductsPricesToThoseInDatabaseTest(String productName, String productPrice) {
-        loginPage.openPage()
-                .login(createStandardUser());
-        productsPage.waitForPageLoaded();
+        loginAndOpenProductsPage()
+                .waitForPageLoaded();
         for (int i = 0; i < productsPage.getListOfProductsNames().size(); i++) {
             Assert.assertEquals(productsPage.getListOfProductsPrices().get(i), listOfProductsOffered()[i][1]);
         }
     }
 }
-
