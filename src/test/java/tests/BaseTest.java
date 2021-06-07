@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import pages.*;
@@ -29,6 +30,7 @@ public class BaseTest {
         driver.manage().window().maximize();
         initPages();
         PageFactory.initElements(driver, this);
+        createStandardUser();
     }
 
     @AfterMethod(alwaysRun = true)
@@ -45,8 +47,7 @@ public class BaseTest {
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
     }
 
-    @BeforeTest
-    public User standardUser() {
+    public User createStandardUser() {
         User user = new User("standard_user", "secret_sauce");
         return user;
     }

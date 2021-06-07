@@ -9,7 +9,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
     @Test
     public void fillInputsWithValidDataTest() {
         loginPage.openPage()
-                 .login(standardUser());
+                 .login(createStandardUser());
         checkoutCustomerInformationPage.openPage()
                                        .enter(new CustomerInformation(FIRST_NAME_INPUT_VALUE, LAST_NAME_INPUT_VALUE, POSTAL_CODE_INPUT_VALUE));
         Assert.assertTrue(checkoutOverviewPage.getPageTitle().isDisplayed());
@@ -18,7 +18,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
     @Test
     public void checkNecessaryInputsTest() {
         loginPage.openPage()
-                 .login(standardUser());
+                 .login(createStandardUser());
         checkoutCustomerInformationPage.openPage()
                                        .enter(new CustomerInformation("", "", ""));
         Assert.assertEquals(checkoutCustomerInformationPage.getErrorMessageText(), FIRST_NAME_REQUIRED_ERROR_MESSAGE_TEXT);
@@ -27,7 +27,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
     @Test
     public void checkFirstnameFillingNecessityTest() {
         loginPage.openPage()
-                 .login(standardUser());
+                 .login(createStandardUser());
         checkoutCustomerInformationPage.openPage()
                                        .enter(new CustomerInformation("", LAST_NAME_INPUT_VALUE, POSTAL_CODE_INPUT_VALUE));
         Assert.assertEquals(checkoutCustomerInformationPage.getErrorMessageText(), FIRST_NAME_REQUIRED_ERROR_MESSAGE_TEXT);
@@ -36,7 +36,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
     @Test
     public void checkLastnameFillingNecessityTest() {
         loginPage.openPage()
-                 .login(standardUser());
+                 .login(createStandardUser());
         checkoutCustomerInformationPage.openPage()
                                        .enter(new CustomerInformation(FIRST_NAME_INPUT_VALUE, "", POSTAL_CODE_INPUT_VALUE));
         Assert.assertEquals(checkoutCustomerInformationPage.getErrorMessageText(), LAST_NAME_REQUIRED_ERROR_MESSAGE_TEXT);
@@ -45,7 +45,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
     @Test
     public void checkPostalCodeFillingNecessityTest() {
         loginPage.openPage()
-                 .login(standardUser());
+                 .login(createStandardUser());
         checkoutCustomerInformationPage.openPage()
                                        .enter(new CustomerInformation(FIRST_NAME_INPUT_VALUE, LAST_NAME_INPUT_VALUE, ""));
         Assert.assertEquals(checkoutCustomerInformationPage.getErrorMessageText(), POSTAL_CODE_REQUIRED_ERROR_MESSAGE_TEXT);

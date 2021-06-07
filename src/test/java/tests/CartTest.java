@@ -7,7 +7,7 @@ public class CartTest extends BaseTest implements ITestConstants {
     @Test
     public void addProductToTheCartFromProductsPageTest() {
         loginPage.openPage()
-                 .login(standardUser());
+                 .login(createStandardUser());
         productsPage.addProductToTheCart(SAUCE_LABS_BOLT_T_SHIRT_PRODUCT);
         String expectedProductPrice = productsPage.getProductPrice(SAUCE_LABS_BOLT_T_SHIRT_PRODUCT);
         cartPage.openPage();
@@ -17,7 +17,7 @@ public class CartTest extends BaseTest implements ITestConstants {
     @Test
     public void addProductToTheCartFromProductSpecificationPageTest() {
         loginPage.openPage()
-                .login(standardUser());
+                .login(createStandardUser());
         productsPage.clickAndGoToProductDetailsPage(SAUCE_LABS_ONESIE_PRODUCT);
         String expectedPrice = productDetailsPage.getProductPrice(SAUCE_LABS_ONESIE_PRODUCT);
         productDetailsPage.addProductToTheCart(SAUCE_LABS_ONESIE_PRODUCT);
@@ -28,7 +28,7 @@ public class CartTest extends BaseTest implements ITestConstants {
     @Test
     public void removeProductsFromTheCartTest() {
         loginPage.openPage()
-                 .login(standardUser());
+                 .login(createStandardUser());
         productsPage.addProductToTheCart(SAUCE_LABS_ONESIE_PRODUCT)
                  .addProductToTheCart(SAUCE_LABS_BACKPACK_PRODUCT);
         cartPage.openPage()
@@ -39,7 +39,7 @@ public class CartTest extends BaseTest implements ITestConstants {
     @Test
     public void checkCartLinkTest() {
         loginPage.openPage()
-                 .login(standardUser());
+                 .login(createStandardUser());
         productsPage.addProductToTheCart(TEST_ALL_THE_THINGS_T_SHIRT_RED_PRODUCT)
                  .goToCartPageByCartIcon();
         Assert.assertEquals(cartPage.getNumberOfItems(), 1);

@@ -8,7 +8,7 @@ public class LoginTest extends BaseTest implements ITestConstants {
     @Test
     public void loginWithValidDataTest() {
         loginPage.openPage()
-                 .login(standardUser());
+                 .login(createStandardUser());
         Assert.assertTrue(productsPage.getPageTitleElement().isDisplayed());
     }
 

@@ -7,7 +7,7 @@ public class CheckoutOverviewTest extends BaseTest implements ITestConstants {
     @Test
     public void checkTheNumberOfProductItemsInTheOrderTest() {
         loginPage.openPage()
-                 .login(standardUser());
+                 .login(createStandardUser());
         productsPage.addProductToTheCart(SAUCE_LABS_BIKE_LIGHT_PRODUCT)
                  .addProductToTheCart(SAUCE_LABS_BACKPACK_PRODUCT);
         checkoutOverviewPage.openPage();
@@ -17,7 +17,7 @@ public class CheckoutOverviewTest extends BaseTest implements ITestConstants {
     @Test
     public void checkThePriceOfProductsInTheOrderTest() {
         loginPage.openPage()
-                 .login(standardUser());
+                 .login(createStandardUser());
         productsPage.addProductToTheCart(SAUCE_LABS_BACKPACK_PRODUCT)
                  .addProductToTheCart(SAUCE_LABS_BIKE_LIGHT_PRODUCT)
                  .addProductToTheCart(SAUCE_LABS_BOLT_T_SHIRT_PRODUCT);
@@ -30,7 +30,7 @@ public class CheckoutOverviewTest extends BaseTest implements ITestConstants {
     @Test
     public void checkTheNumberOfProductsInTheOrderTest() {
         loginPage.openPage()
-                 .login(standardUser());
+                 .login(createStandardUser());
         productsPage.waitForPageLoaded();
         productsPage.addAllProductsToTheCart();
         checkoutOverviewPage.openPage()
