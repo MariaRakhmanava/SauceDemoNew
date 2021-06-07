@@ -23,7 +23,7 @@ public class ProductsTest extends BaseTest implements ITestConstants {
     @Test
     public void checkProductsRangeTest() {
         loginPage.openPage()
-                 .login(standardUser());
+                 .login(VALID_LOGIN, VALID_PASSWORD);
         productsPage.waitForPageLoaded();
         productsPage.setProductsSorting(BY_PRICE_HIGH_TO_LOW_PRODUCTS_SORTING_PRINCIPLE);
         Assert.assertEquals(productsPage.getTheNumberOfProductsOffered(), 6);
@@ -32,7 +32,7 @@ public class ProductsTest extends BaseTest implements ITestConstants {
     @Test
     public void compareProductsNamesToThoseInDatabaseTest() {
         loginPage.openPage()
-                .login(standardUser());
+                .login(VALID_LOGIN, VALID_PASSWORD);
         productsPage.waitForPageLoaded();
         for (int i = 0; i < productsPage.getListOfProductsNames().size(); i++) {
             Assert.assertEquals(productsPage.getListOfProductsNames().get(i), setListOfProductsOffered().getListOfProductsNames().get(i));
@@ -42,7 +42,7 @@ public class ProductsTest extends BaseTest implements ITestConstants {
     @Test
     public void compareProductsPricesToThoseInDatabaseTest() {
         loginPage.openPage()
-                .login(standardUser());
+                .login(VALID_LOGIN, VALID_PASSWORD);
         productsPage.waitForPageLoaded();
         for (int i = 0; i < productsPage.getListOfProductsNames().size(); i++) {
             Assert.assertEquals(productsPage.getListOfProductsPrices().get(i), setListOfProductsOffered().getListOfProductsPrices().get(i));
