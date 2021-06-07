@@ -29,6 +29,7 @@ public class BaseTest {
         driver.manage().window().maximize();
         initPages();
         PageFactory.initElements(driver, this);
+        standardUser();
     }
 
     public void initPages() {
@@ -40,14 +41,13 @@ public class BaseTest {
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void endTest() {
-        driver.quit();
-    }
-
-    @BeforeTest
     public User standardUser() {
         User user = new User("standard_user", "secret_sauce");
         return user;
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void endTest() {
+        driver.quit();
     }
 }
