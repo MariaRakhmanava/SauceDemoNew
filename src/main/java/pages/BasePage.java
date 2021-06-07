@@ -1,11 +1,9 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -43,13 +41,5 @@ abstract class BasePage {
     public void waitForElementsDisplayed(List<WebElement> elements, int timeout) {
         wait = new WebDriverWait(driver, timeout);
         wait.until(ExpectedConditions.visibilityOfAllElements(elements));
-    }
-
-    public void waitForPageLoaded() {
-        new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver driver) {
-                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
-            }
-        };
     }
 }

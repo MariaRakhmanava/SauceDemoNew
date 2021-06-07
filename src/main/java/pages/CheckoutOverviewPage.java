@@ -37,8 +37,8 @@ public class CheckoutOverviewPage extends HeaderMenuPage {
     WebElement finishButton;
 
     @FindBys({
-      @FindBy(xpath = "//*[@class='title']"),
-      @FindBy(xpath = "//*[contains(text(),'Overview')]")
+            @FindBy(xpath = "//*[@class='title']"),
+            @FindBy(xpath = "//*[contains(text(),'Overview')]")
     })
     WebElement pageTitle;
 

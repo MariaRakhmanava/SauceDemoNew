@@ -1,6 +1,5 @@
 package pages;
 
-import objects.CustomerInformation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,11 +35,11 @@ public class CheckoutCustomerInformationPage extends HeaderMenuPage {
         return this;
     }
 
-    public void enter(CustomerInformation customerInfo) {
+    public void enter(String firstName, String lastName, String postalCode) {
         waitForElementDisplayed(firstNameInput, 10);
-        firstNameInput.sendKeys(customerInfo.getFirstName());
-        lastNameInput.sendKeys(customerInfo.getLastName());
-        zipOrPostalCodeInput.sendKeys(customerInfo.getPostalCode());
+        firstNameInput.sendKeys(firstName);
+        lastNameInput.sendKeys(lastName);
+        zipOrPostalCodeInput.sendKeys(postalCode);
         continueButton.click();
     }
 
@@ -55,3 +54,4 @@ public class CheckoutCustomerInformationPage extends HeaderMenuPage {
         return errorMessage.getText();
     }
 }
+

@@ -1,10 +1,12 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -46,8 +48,8 @@ public class ProductsPage extends HeaderMenuPage {
     private static final String PRODUCT_DESCRIPTION = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item_description']//*[@class='inventory_item_desc']";
 
     public ProductsPage openPage() {
-       super.openPage(PRODUCTS_PAGE_URL);
-       return this;
+        super.openPage(PRODUCTS_PAGE_URL);
+        return this;
     }
 
     public ProductsPage addProductToTheCart(String productName) {
@@ -126,7 +128,7 @@ public class ProductsPage extends HeaderMenuPage {
         waitForElementsDisplayed(inventoryItemsNames, 10);
         List<String> listOfNames = new ArrayList<>(6);
         for (WebElement item : inventoryItemsNames) {
-             listOfNames.add(item.getText());
+            listOfNames.add(item.getText());
         }
         return listOfNames;
     }
@@ -152,5 +154,14 @@ public class ProductsPage extends HeaderMenuPage {
 
     public void clickProductNameToGoToProductDetailsPage(String element) {
         driver.findElement(this.getProductLinkLocator(element)).click();
+    }
+
+    public ProductsPage waitForPageLoaded() {
+        new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+            }
+        };
+        return new ProductsPage(driver);
     }
 }
