@@ -8,7 +8,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
     public void fillInputsWithValidDataTest() {
         loginAndOpenProductsPage();
         checkoutCustomerInformationPage.openPage()
-                .enter(FIRST_NAME_INPUT_VALUE, LAST_NAME_INPUT_VALUE, POSTAL_CODE_INPUT_VALUE);
+                .enterUserInformation(FIRST_NAME_INPUT_VALUE, LAST_NAME_INPUT_VALUE, POSTAL_CODE_INPUT_VALUE);
         Assert.assertTrue(checkoutOverviewPage.getPageTitle().isDisplayed());
     }
 
@@ -16,7 +16,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
     public void checkNecessaryInputsTest() {
         loginAndOpenProductsPage();
         checkoutCustomerInformationPage.openPage()
-                .enter("", "", "");
+                .enterUserInformation("", "", "");
         Assert.assertEquals(checkoutCustomerInformationPage.getErrorMessageText(), FIRST_NAME_REQUIRED_ERROR_MESSAGE_TEXT);
     }
 
@@ -24,7 +24,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
     public void checkFirstnameFillingNecessityTest() {
         loginAndOpenProductsPage();
         checkoutCustomerInformationPage.openPage()
-                .enter("", LAST_NAME_INPUT_VALUE, POSTAL_CODE_INPUT_VALUE);
+                .enterUserInformation("", LAST_NAME_INPUT_VALUE, POSTAL_CODE_INPUT_VALUE);
         Assert.assertEquals(checkoutCustomerInformationPage.getErrorMessageText(), FIRST_NAME_REQUIRED_ERROR_MESSAGE_TEXT);
     }
 
@@ -32,7 +32,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
     public void checkLastnameFillingNecessityTest() {
         loginAndOpenProductsPage();
         checkoutCustomerInformationPage.openPage()
-                .enter(FIRST_NAME_INPUT_VALUE, "", POSTAL_CODE_INPUT_VALUE);
+                .enterUserInformation(FIRST_NAME_INPUT_VALUE, "", POSTAL_CODE_INPUT_VALUE);
         Assert.assertEquals(checkoutCustomerInformationPage.getErrorMessageText(), LAST_NAME_REQUIRED_ERROR_MESSAGE_TEXT);
     }
 
@@ -40,7 +40,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
     public void checkPostalCodeFillingNecessityTest() {
         loginAndOpenProductsPage();
         checkoutCustomerInformationPage.openPage()
-                .enter(FIRST_NAME_INPUT_VALUE, LAST_NAME_INPUT_VALUE, "");
+                .enterUserInformation(FIRST_NAME_INPUT_VALUE, LAST_NAME_INPUT_VALUE, "");
         Assert.assertEquals(checkoutCustomerInformationPage.getErrorMessageText(), POSTAL_CODE_REQUIRED_ERROR_MESSAGE_TEXT);
     }
 }
