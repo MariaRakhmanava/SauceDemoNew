@@ -35,7 +35,7 @@ public class CheckoutCustomerInformationPage extends HeaderMenuPage {
         return this;
     }
 
-    public void enter(String firstName, String lastName, String postalCode) {
+    public void enterUserInformation(String firstName, String lastName, String postalCode) {
         waitForElementDisplayed(firstNameInput, 10);
         firstNameInput.sendKeys(firstName);
         lastNameInput.sendKeys(lastName);
