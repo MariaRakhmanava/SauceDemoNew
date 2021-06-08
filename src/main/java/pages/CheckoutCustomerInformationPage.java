@@ -54,4 +54,3 @@ public class CheckoutCustomerInformationPage extends HeaderMenuPage {
         return errorMessage.getText();
     }
 }
-

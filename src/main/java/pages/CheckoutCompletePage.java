@@ -16,8 +16,8 @@ public class CheckoutCompletePage extends HeaderMenuPage {
     }
 
     public CheckoutCompletePage openPage() {
-       super.openPage(CHECKOUT_COMPLETE_PAGE_URL);
-       return this;
+        super.openPage(CHECKOUT_COMPLETE_PAGE_URL);
+        return this;
     }
 
     public CheckoutOverviewPage clickBackHomeButton() {

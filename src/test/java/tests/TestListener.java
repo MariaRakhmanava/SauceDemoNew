@@ -50,4 +50,3 @@ public class TestListener implements ITestListener {
         return TimeUnit.MILLISECONDS.toSeconds(iTestResult.getEndMillis() - iTestResult.getStartMillis());
     }
 }
-

@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="SauceDemoNew Test Suite" parallel="tests" thread-count="2">
-    <test name="CartTests">
-        <!-- <groups>-->
-        <!-- <run>-->
-        <!-- <include name="slow" />-->
-        <!-- </run>-->
-        <!-- </groups>-->
+<suite name="SauceDemoNew Test Suite" parallel="classes" thread-count="2">
+    <test name="SauceDemoNewTests">
         <classes>
-            <class name="tests.CartTest" />
-        </classes>
-    </test>
-    <test name="ProductsTests">
-        <classes>
+            <class name="tests.LoginTest" />
             <class name="tests.ProductsTest" />
-            <!-- <parameter name="password" value="123"></parameter>-->
+            <class name="tests.ProductsTestWithDataProvider" />
+            <class name="tests.ProductDetailsTest" />
+            <class name="tests.CartTest" />
+            <class name="tests.CheckoutCustomerInformationTest" />
+            <class name="tests.CheckoutOverviewTest" />
         </classes>
     </test>
 </suite>
-

@@ -45,4 +45,3 @@ public class LoginTest extends BaseTest implements ITestConstants {
         Assert.assertEquals(loginPage.getErrorMessageText(), NO_MATCHES_ERROR_MESSAGE_TEXT);
     }
 }
-
