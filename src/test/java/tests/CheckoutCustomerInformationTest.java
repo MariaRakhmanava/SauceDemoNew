@@ -8,7 +8,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
     public void fillInputsWithValidDataTest() {
         loginAndOpenProductsPage();
         checkoutCustomerInformationPage.openPage()
-                                       .enter(System.getProperty("firstName"), System.getProperty("lastName"), System.getProperty("postalCode"));
+                                       .enter(FIRST_NAME_INPUT_VALUE, LAST_NAME_INPUT_VALUE, POSTAL_CODE_INPUT_VALUE);
         Assert.assertTrue(checkoutOverviewPage.getPageTitle().isDisplayed());
     }
 
