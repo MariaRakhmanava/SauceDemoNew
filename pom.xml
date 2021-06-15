@@ -5,59 +5,40 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>SauceDemo</artifactId>
+    <artifactId>SauceDemoNew</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <testng.version>7.0.0</testng.version>
+        <testng.version>7.1.0</testng.version>
+        <selenium-java.version>3.141.59</selenium-java.version>
+        <webdrivermanager.version>4.4.1</webdrivermanager.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
     </properties>
 
-    <!--    <build>-->
-    <!--        <plugins>-->
-    <!--            <plugin>-->
-    <!--                <groupId>org.apache.maven.plugins</groupId>-->
-    <!--                <artifactId>maven-surefire-plugin</artifactId>-->
-    <!--                <version>3.0.0-M4</version>-->
-    <!--                <configuration>-->
-    <!--                    <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>-->
-    <!--                    <suiteXmlFiles>-->
-    <!--                        <suiteXmlFile>src/test/resources/soucedemo.xml</suiteXmlFile>-->
-    <!--                    </suiteXmlFiles>-->
-    <!--                </configuration>-->
-    <!--            </plugin>-->
-    <!--        </plugins>-->
-    <!--    </build>-->
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <argLine>
-                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar
-                        -Xmx256m
-                    </argLine>
+                    <suiteXmlFiles>
+                        <suitXmlFile>src/test/resources/saucedemonew.xml</suitXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjweaver</artifactId>
-                        <version>1.9.1</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-maven</artifactId>
-                <version>2.10.0</version>
             </plugin>
         </plugins>
     </build>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium-java.version}</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
@@ -65,28 +46,13 @@
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>3.141.59</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>4.4.1</version>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>2.7.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.9.1</version>
+            <version>${webdrivermanager.version}</version>
         </dependency>
     </dependencies>
+
 </project>
+
