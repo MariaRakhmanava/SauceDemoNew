@@ -48,7 +48,7 @@ public class BaseTest implements ITestConstants {
 
     public ProductsPage loginAndOpenProductsPage() {
         loginPage.openPage()
-                .login(VALID_LOGIN, VALID_PASSWORD);
+                .login(System.getProperty("username", VALID_LOGIN), System.getProperty("password", VALID_PASSWORD));
         return new ProductsPage(driver);
     }
 }
