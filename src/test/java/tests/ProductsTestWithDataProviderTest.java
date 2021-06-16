@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class ProductsTestWithDataProvider extends BaseTest implements ITestConstants {
+public class ProductsTestWithDataProviderTest extends BaseTest implements ITestConstants {
 
     @DataProvider(name = "Data about products offered")
     public Object[][] listOfProductsOffered() {
