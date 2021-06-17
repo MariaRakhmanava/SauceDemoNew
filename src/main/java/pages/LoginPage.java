@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,11 +28,13 @@ public class LoginPage extends HeaderMenuPage {
         super(driver);
     }
 
+    @Step
     public LoginPage openPage() {
         super.openPage(LOGIN_PAGE_URL);
         return this;
     }
 
+    @Step
     public void login(String login, String password) {
         waitForElementDisplayed(usernameInput, 10);
         usernameInput.sendKeys(login);

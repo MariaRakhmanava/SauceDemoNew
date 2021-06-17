@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class CheckoutOverviewTest extends BaseTest implements ITestConstants {
     @Test
     public void checkTheNumberOfProductItemsInTheOrderTest() {
-        loginAndOpenProductsPage()
+        loginAndOpenProductsPageStep()
                 .addProductToTheCart(SAUCE_LABS_BIKE_LIGHT_PRODUCT)
                 .addProductToTheCart(SAUCE_LABS_BACKPACK_PRODUCT);
         checkoutOverviewPage.openPage();
@@ -15,7 +15,7 @@ public class CheckoutOverviewTest extends BaseTest implements ITestConstants {
 
     @Test
     public void checkThePriceOfProductsInTheOrderTest() {
-        loginAndOpenProductsPage()
+        loginAndOpenProductsPageStep()
                 .addProductToTheCart(SAUCE_LABS_BACKPACK_PRODUCT)
                 .addProductToTheCart(SAUCE_LABS_BIKE_LIGHT_PRODUCT)
                 .addProductToTheCart(SAUCE_LABS_BOLT_T_SHIRT_PRODUCT);
@@ -27,7 +27,7 @@ public class CheckoutOverviewTest extends BaseTest implements ITestConstants {
 
     @Test
     public void checkTheNumberOfProductsInTheOrderTest() {
-        loginAndOpenProductsPage()
+        loginAndOpenProductsPageStep()
                 .waitForPageLoaded()
                 .addAllProductsToTheCart();
         checkoutOverviewPage.openPage();

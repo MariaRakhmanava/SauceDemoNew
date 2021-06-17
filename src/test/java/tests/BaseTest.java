@@ -1,10 +1,13 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -46,9 +49,15 @@ public class BaseTest implements ITestConstants {
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
     }
 
-    public ProductsPage loginAndOpenProductsPage() {
+    @Step("A trial to open login page, log in with valid username and password, be moved to products page")
+    public ProductsPage loginAndOpenProductsPageStep() {
         loginPage.openPage()
                 .login(System.getProperty("username", VALID_LOGIN), System.getProperty("password", VALID_PASSWORD));
         return new ProductsPage(driver);
+    }
+
+    @Step("A trial to check a move from login page to products page")
+    public void checkElementIsDisplayedStep(WebElement element) {
+        Assert.assertTrue(element.isDisplayed());
     }
 }

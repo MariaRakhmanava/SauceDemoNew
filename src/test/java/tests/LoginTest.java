@@ -4,10 +4,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest implements ITestConstants {
-    @Test
+    @Test(description = "Login validation check")
     public void loginWithValidDataTest() {
-        loginAndOpenProductsPage();
-        Assert.assertTrue(productsPage.getPageTitleElement().isDisplayed());
+        loginAndOpenProductsPageStep();
+        checkElementIsDisplayedStep(productsPage.getPageTitleElement());
     }
 
     @Test

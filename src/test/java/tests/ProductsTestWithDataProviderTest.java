@@ -20,7 +20,7 @@ public class ProductsTestWithDataProviderTest extends BaseTest implements ITestC
 
     @Test
     public void checkProductsRangeTest() {
-        loginAndOpenProductsPage()
+        loginAndOpenProductsPageStep()
                 .waitForPageLoaded()
                 .setProductsSorting(BY_PRICE_HIGH_TO_LOW_PRODUCTS_SORTING_PRINCIPLE);
         Assert.assertEquals(productsPage.getTheNumberOfProductsOffered(), 6);
@@ -28,7 +28,7 @@ public class ProductsTestWithDataProviderTest extends BaseTest implements ITestC
 
     @Test(dataProvider = "Data about products offered")
     public void compareProductsNamesToThoseInDatabaseTest(String productName, String productPrice) {
-        loginAndOpenProductsPage()
+        loginAndOpenProductsPageStep()
                 .waitForPageLoaded();
         for (int i = 0; i < productsPage.getListOfProductsNames().size(); i++) {
             Assert.assertEquals(productsPage.getListOfProductsNames().get(i), listOfProductsOffered()[i][0]);
@@ -37,7 +37,7 @@ public class ProductsTestWithDataProviderTest extends BaseTest implements ITestC
 
     @Test(dataProvider = "Data about products offered")
     public void compareProductsPricesToThoseInDatabaseTest(String productName, String productPrice) {
-        loginAndOpenProductsPage()
+        loginAndOpenProductsPageStep()
                 .waitForPageLoaded();
         for (int i = 0; i < productsPage.getListOfProductsNames().size(); i++) {
             Assert.assertEquals(productsPage.getListOfProductsPrices().get(i), listOfProductsOffered()[i][1]);
