@@ -1,5 +1,6 @@
 package pages;
 
+import consts.IPagesUrls;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,9 +9,7 @@ import org.openqa.selenium.support.FindBys;
 
 import java.util.List;
 
-import static consts.IPagesUrls.CHECKOUT_OVERVIEW_PAGE_URL;
-
-public class CheckoutOverviewPage extends HeaderMenuPage {
+public class CheckoutOverviewPage extends HeaderMenuPage implements IPagesUrls {
 
     @FindBy(xpath = "//*[@class='cart_item']")
     List<WebElement> productsInTheOrder;

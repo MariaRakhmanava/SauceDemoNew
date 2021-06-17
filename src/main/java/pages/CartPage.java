@@ -1,14 +1,13 @@
 package pages;
 
+import consts.IPagesUrls;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static consts.IPagesUrls.CART_PAGE_URL;
-
-public class CartPage extends HeaderMenuPage {
+public class CartPage extends HeaderMenuPage implements IPagesUrls {
 
     @FindBy(xpath = "//*[@class='cart_item']")
     List<WebElement> productsInTheCart;

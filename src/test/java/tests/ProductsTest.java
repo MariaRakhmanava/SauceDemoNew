@@ -1,5 +1,6 @@
 package tests;
 
+import consts.ITestConstants;
 import objects.ListOfProductsOffered;
 import objects.Product;
 import org.testng.Assert;

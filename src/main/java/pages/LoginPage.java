@@ -1,13 +1,12 @@
 package pages;
 
+import consts.IPagesUrls;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static consts.IPagesUrls.LOGIN_PAGE_URL;
-
-public class LoginPage extends HeaderMenuPage {
+public class LoginPage extends HeaderMenuPage implements IPagesUrls {
 
     @FindBy(xpath = "//*[@data-test='username']")
     WebElement usernameInput;

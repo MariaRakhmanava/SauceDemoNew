@@ -1,12 +1,11 @@
 package pages;
 
+import consts.IPagesUrls;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static consts.IPagesUrls.CHECKOUT_CUSTOMER_INFO_PAGE_URL;
-
-public class CheckoutCustomerInformationPage extends HeaderMenuPage {
+public class CheckoutCustomerInformationPage extends HeaderMenuPage implements IPagesUrls {
 
     @FindBy(id = "first-name")
     WebElement firstNameInput;

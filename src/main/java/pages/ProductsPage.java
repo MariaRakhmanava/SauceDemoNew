@@ -1,5 +1,6 @@
 package pages;
 
+import consts.IPagesUrls;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,9 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.List;
 
-import static consts.IPagesUrls.PRODUCTS_PAGE_URL;
-
-public class ProductsPage extends HeaderMenuPage {
+public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
 
     @FindBy(xpath = "//*[contains(text(),'Add to cart')]")
     List<WebElement> addToCartButtonsOfAllProducts;

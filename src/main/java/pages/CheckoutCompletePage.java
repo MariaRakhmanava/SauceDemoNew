@@ -1,12 +1,11 @@
 package pages;
 
+import consts.IPagesUrls;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static consts.IPagesUrls.CHECKOUT_COMPLETE_PAGE_URL;
-
-public class CheckoutCompletePage extends HeaderMenuPage {
+public class CheckoutCompletePage extends HeaderMenuPage implements IPagesUrls {
 
     @FindBy(id = "back-to-products")
     WebElement backHomeButton;
