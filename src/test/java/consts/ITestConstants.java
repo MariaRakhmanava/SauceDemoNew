@@ -1,4 +1,4 @@
-package tests;
+package consts;
 
 public interface ITestConstants {
     String VALID_LOGIN = "standard_user";

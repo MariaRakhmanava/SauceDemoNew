@@ -1,5 +1,6 @@
 package tests;
 
+import consts.ITestConstants;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
