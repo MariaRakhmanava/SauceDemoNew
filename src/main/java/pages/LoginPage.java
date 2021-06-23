@@ -1,13 +1,13 @@
 package pages;
 
+import consts.IPagesUrls;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static consts.IPagesUrls.LOGIN_PAGE_URL;
 
-public class LoginPage extends HeaderMenuPage {
+public class LoginPage extends HeaderMenuPage implements IPagesUrls {
 
     @FindBy(xpath = "//*[@data-test='username']")
     WebElement usernameInput;
@@ -28,13 +28,13 @@ public class LoginPage extends HeaderMenuPage {
         super(driver);
     }
 
-    @Step
+    @Step("Opening Login Page")
     public LoginPage openPage() {
         super.openPage(LOGIN_PAGE_URL);
         return this;
     }
 
-    @Step
+    @Step("Logging in with {login} username and {password} password")
     public void login(String login, String password) {
         waitForElementDisplayed(usernameInput, 10);
         usernameInput.sendKeys(login);
@@ -47,6 +47,7 @@ public class LoginPage extends HeaderMenuPage {
         return errorMessage;
     }
 
+    @Step("Getting an error message due to invalid credential/credentials input")
     public String getErrorMessageText() {
         waitForElementDisplayed(errorMessage, 10);
         return errorMessage.getText();

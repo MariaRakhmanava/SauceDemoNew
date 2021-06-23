@@ -1,12 +1,13 @@
 package pages;
 
+import consts.IPagesUrls;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static consts.IPagesUrls.CHECKOUT_CUSTOMER_INFO_PAGE_URL;
 
-public class CheckoutCustomerInformationPage extends HeaderMenuPage {
+public class CheckoutCustomerInformationPage extends HeaderMenuPage implements IPagesUrls {
 
     @FindBy(id = "first-name")
     WebElement firstNameInput;
@@ -30,11 +31,13 @@ public class CheckoutCustomerInformationPage extends HeaderMenuPage {
         super(driver);
     }
 
+    @Step("Opening Checkout Stage 1 [Your Information] Page")
     public CheckoutCustomerInformationPage openPage() {
         super.openPage(CHECKOUT_CUSTOMER_INFO_PAGE_URL);
         return this;
     }
 
+    @Step("Filling the First Name, Last Name, Postal Code fields with {firstName}, {lastName}, {postalCode} correspondingly")
     public void enterUserInformation(String firstName, String lastName, String postalCode) {
         waitForElementDisplayed(firstNameInput, 10);
         firstNameInput.sendKeys(firstName);
@@ -49,6 +52,7 @@ public class CheckoutCustomerInformationPage extends HeaderMenuPage {
         return new CartPage(driver);
     }
 
+    @Step("Getting an error message having filled not all the fields")
     public String getErrorMessageText() {
         waitForElementDisplayed(errorMessage, 10);
         return errorMessage.getText();

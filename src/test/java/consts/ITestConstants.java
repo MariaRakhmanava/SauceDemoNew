@@ -1,7 +1,7 @@
 package consts;
 
 public interface ITestConstants {
-    String VALID_LOGIN = "standard_user";
+    String VALID_USERNAME = "standard_user";
     String VALID_PASSWORD = "secret_sauce";
 
     String BY_PRICE_HIGH_TO_LOW_PRODUCTS_SORTING_PRINCIPLE = "Price (high to low)";
