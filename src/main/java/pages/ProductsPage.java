@@ -105,6 +105,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
         driver.findElement(By.xpath(String.format(PRODUCT_DETAILS_LINK, productName))).click();
     }
 
+    @Step("Get the product portfolio displayed on the products page")
     public int getTheNumberOfProductsOffered() {
         waitForElementsDisplayed(inventoryItemsNames, 10);
         return inventoryItemsNames.size();
@@ -130,6 +131,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
         return this;
     }
 
+    @Step("Get the list of products' names which are displayed on the products page")
     public List<String> getListOfProductsNames() {
         waitForElementsDisplayed(inventoryItemsNames, 10);
         List<String> listOfNames = new ArrayList<>(6);
@@ -139,6 +141,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
         return listOfNames;
     }
 
+    @Step("Get the list of products' prices which are displayed on the products page")
     public List<String> getListOfProductsPrices() {
         waitForElementsDisplayed(productsPrices, 10);
         List<String> listOfPrices = new ArrayList<>(6);
