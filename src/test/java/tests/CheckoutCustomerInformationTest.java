@@ -1,17 +1,24 @@
 package tests;
 
 import consts.ITestConstants;
+import objects.CustomerInformation;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class CheckoutCustomerInformationTest extends BaseTest implements ITestConstants {
+    @BeforeTest
+    public CustomerInformation fullCustomerInformation() {
+        CustomerInformation fullCustomerInformation = new CustomerInformation(FIRST_NAME_INPUT_VALUE, LAST_NAME_INPUT_VALUE, POSTAL_CODE_INPUT_VALUE);
+        return fullCustomerInformation;
+    }
     @Test
     public void fillInputsWithValidDataTest() {
         loginSteps
                 .loginAndAppearOnProductsPage(VALID_USERNAME, VALID_PASSWORD);
         checkoutCustomerInformationPage
                 .openPage()
-                .enterUserInformation(FIRST_NAME_INPUT_VALUE, LAST_NAME_INPUT_VALUE, POSTAL_CODE_INPUT_VALUE);
+                .enterUserInformation(fullCustomerInformation());
         Assert.assertTrue(checkoutOverviewPage.getPageTitle().isDisplayed());
     }
 
@@ -21,7 +28,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
                 .loginAndAppearOnProductsPage(VALID_USERNAME, VALID_PASSWORD);
         checkoutCustomerInformationPage
                 .openPage()
-                .enterUserInformation("", "", "");
+                .enterUserInformation(new CustomerInformation("","",""));
         Assert.assertEquals(checkoutCustomerInformationPage.getErrorMessageText(), FIRST_NAME_REQUIRED_ERROR_MESSAGE_TEXT);
     }
 
@@ -31,7 +38,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
                 .loginAndAppearOnProductsPage(VALID_USERNAME, VALID_PASSWORD);
         checkoutCustomerInformationPage
                 .openPage()
-                .enterUserInformation("", LAST_NAME_INPUT_VALUE, POSTAL_CODE_INPUT_VALUE);
+                .enterUserInformation(new CustomerInformation("", LAST_NAME_INPUT_VALUE, POSTAL_CODE_INPUT_VALUE));
         Assert.assertEquals(checkoutCustomerInformationPage.getErrorMessageText(), FIRST_NAME_REQUIRED_ERROR_MESSAGE_TEXT);
     }
 
@@ -41,7 +48,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
                 .loginAndAppearOnProductsPage(VALID_USERNAME, VALID_PASSWORD);
         checkoutCustomerInformationPage
                 .openPage()
-                .enterUserInformation(FIRST_NAME_INPUT_VALUE, "", POSTAL_CODE_INPUT_VALUE);
+                .enterUserInformation(new CustomerInformation(FIRST_NAME_INPUT_VALUE, "", POSTAL_CODE_INPUT_VALUE));
         Assert.assertEquals(checkoutCustomerInformationPage.getErrorMessageText(), LAST_NAME_REQUIRED_ERROR_MESSAGE_TEXT);
     }
 
@@ -51,7 +58,7 @@ public class CheckoutCustomerInformationTest extends BaseTest implements ITestCo
                 .loginAndAppearOnProductsPage(VALID_USERNAME, VALID_PASSWORD);
         checkoutCustomerInformationPage
                 .openPage()
-                .enterUserInformation(FIRST_NAME_INPUT_VALUE, LAST_NAME_INPUT_VALUE, "");
+                .enterUserInformation(new CustomerInformation(FIRST_NAME_INPUT_VALUE, LAST_NAME_INPUT_VALUE, ""));
         Assert.assertEquals(checkoutCustomerInformationPage.getErrorMessageText(), POSTAL_CODE_REQUIRED_ERROR_MESSAGE_TEXT);
     }
 }

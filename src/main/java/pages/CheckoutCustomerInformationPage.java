@@ -2,6 +2,7 @@ package pages;
 
 import consts.IPagesUrls;
 import io.qameta.allure.Step;
+import objects.CustomerInformation;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,11 +39,11 @@ public class CheckoutCustomerInformationPage extends HeaderMenuPage implements I
     }
 
     @Step("Filling the First Name, Last Name, Postal Code fields with {firstName}, {lastName}, {postalCode} correspondingly")
-    public void enterUserInformation(String firstName, String lastName, String postalCode) {
+    public void enterUserInformation(CustomerInformation customerInformation) {
         waitForElementDisplayed(firstNameInput, 10);
-        firstNameInput.sendKeys(firstName);
-        lastNameInput.sendKeys(lastName);
-        zipOrPostalCodeInput.sendKeys(postalCode);
+        firstNameInput.sendKeys(customerInformation.getFirstName());
+        lastNameInput.sendKeys(customerInformation.getLastName());
+        zipOrPostalCodeInput.sendKeys(customerInformation.getPostalCode());
         continueButton.click();
     }
 
