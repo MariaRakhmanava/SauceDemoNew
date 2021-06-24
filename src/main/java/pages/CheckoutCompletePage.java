@@ -16,7 +16,7 @@ public class CheckoutCompletePage extends HeaderMenuPage implements IPagesUrls {
         super(driver);
     }
 
-    @Step("Opening Checkout Stage 3 [Complete] Page")
+    @Step("Open the checkout stage 3 [complete] page")
     public CheckoutCompletePage openPage() {
         super.openPage(CHECKOUT_COMPLETE_PAGE_URL);
         return this;

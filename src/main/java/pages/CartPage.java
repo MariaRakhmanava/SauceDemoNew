@@ -32,32 +32,32 @@ public class CartPage extends HeaderMenuPage implements IPagesUrls {
     private static final String PRODUCT_QUANTITY = PRODUCT_ITEM + "/ancestor::*[@class='cart_item']//*[@class='cart_quantity']";
     private static final String REMOVE_BUTTON = PRODUCT_ITEM + "/ancestor::*[@class='cart_item']//button[contains(text(), 'Remove')]";
 
-    @Step("Opening Cart Page")
+    @Step("Open the cart page")
     public CartPage openPage() {
         super.openPage(CART_PAGE_URL);
         return this;
     }
 
-    @Step("Getting the {productName} price displayed on the Cart Page")
+    @Step("Get the {productName} price displayed on the cart page")
     public String getProductPrice(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_PRICE, productName), 10);
         return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
     }
 
-    @Step("Getting the number of {productName} displayed on the Cart Page")
+    @Step("Get the number of {productName} displayed on the cart page")
     public String getProductQuantity(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_QUANTITY, productName), 10);
         return driver.findElement(By.xpath(String.format(PRODUCT_QUANTITY, productName))).getText();
     }
 
-    @Step("Removing {productName} from the Shopping Cart on the Cart Page")
+    @Step("Remove {productName} from the shopping cart on the cart page")
     public CartPage removeProductFromTheCart(String productName) {
         waitForElementDisplayed(String.format(REMOVE_BUTTON, productName), 10);
         driver.findElement(By.xpath(String.format(REMOVE_BUTTON, productName))).click();
         return this;
     }
 
-    @Step("Removing all products from the Shopping Cart on the Cart Page")
+    @Step("Remove all products from the shopping cart on the cart page")
     public CartPage removeAllProductsFromTheCart() {
         waitForElementsDisplayed(productsInTheCart, 10);
         for (WebElement removeButtonOfProductInTheCart : removeButtonsOfProductsInTheCart) {
@@ -78,7 +78,7 @@ public class CartPage extends HeaderMenuPage implements IPagesUrls {
         return new CheckoutCustomerInformationPage(driver);
     }
 
-    @Step("Getting the number of products that have been added to the Sopping Cart")
+    @Step("Get the number of products that have been added to the shopping cart from the cart page")
     public int getNumberOfItems() {
         try {
             waitForElementsDisplayed(productsInTheCart, 10);
@@ -88,7 +88,7 @@ public class CartPage extends HeaderMenuPage implements IPagesUrls {
         }
     }
 
-    @Step("Getting the list of products' names that have been added to the Shopping Cart")
+    @Step("Get the list of products' names that have been added to the shopping cart from the cart page")
     public List<String> getListOfProductsAddedToCart() {
         By locatorToChooseAllItems = By.xpath(PRODUCT_ITEM);
         try {

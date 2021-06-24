@@ -22,25 +22,25 @@ public class ProductDetailsPage extends HeaderMenuPage {
 
     public static final String PRODUCT_ITEM_NAME = "//*[contains(text(), '%s')]";
 
-    @Step("Getting a {productName} name on the {productName} Details Page")
+    @Step("Get a {productName} name displayed on the {productName} details page")
     public String getProductItemName(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_ITEM_NAME, productName), 10);
         return driver.findElement(By.xpath(String.format(PRODUCT_ITEM_NAME, productName))).getText();
     }
 
-    @Step("Getting a {productName} price on the {productName} Details Page")
+    @Step("Get a {productName} price displayed on the {productName} details page")
     public String getProductPrice(String productName) {
         waitForElementDisplayed(productPrice, 10);
         return productPrice.getText();
     }
 
-    @Step("Getting a {productName} description on the {productName} Details Page")
+    @Step("Get a {productName} description displayed on the {productName} details page")
     public String getProductDescription(String productName) {
         waitForElementDisplayed(productDescription, 10);
         return productDescription.getText();
     }
 
-    @Step("Adding a {productName} to the Shopping Cart from the {productName} Details Page")
+    @Step("Add a {productName} to the shopping cart from the {productName} details page")
     public ProductDetailsPage addProductToTheCart(String productName) {
         waitForElementDisplayed(addToCartButton, 10);
         addToCartButton.click();

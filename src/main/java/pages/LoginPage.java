@@ -28,13 +28,13 @@ public class LoginPage extends HeaderMenuPage implements IPagesUrls {
         super(driver);
     }
 
-    @Step("Opening Login Page")
+    @Step("Open the login page")
     public LoginPage openPage() {
         super.openPage(LOGIN_PAGE_URL);
         return this;
     }
 
-    @Step("Logging in with {login} username and {password} password")
+    @Step("Log in with {login} username and {password} password")
     public void login(String login, String password) {
         waitForElementDisplayed(usernameInput, 10);
         usernameInput.sendKeys(login);
@@ -47,7 +47,7 @@ public class LoginPage extends HeaderMenuPage implements IPagesUrls {
         return errorMessage;
     }
 
-    @Step("Getting an error message due to invalid credential/credentials input")
+    @Step("Get an error message due to omitted or invalid credential")
     public String getErrorMessageText() {
         waitForElementDisplayed(errorMessage, 10);
         return errorMessage.getText();

@@ -51,49 +51,49 @@ public class CheckoutOverviewPage extends HeaderMenuPage implements IPagesUrls {
     private static final String PRODUCT_QUANTITY = PRODUCT_ITEM_NAME + "/ancestor::*[@class='cart_item']//*[@class='cart_quantity']";
     private static final String PRODUCT_PRICE = PRODUCT_ITEM_NAME + "/ancestor::*[@class='cart_item']//*[@class='inventory_item_price']";
 
-    @Step("Opening Checkout Stage 2 [Overview] Page")
+    @Step("Open the checkout stage 2 [Overview] page")
     public CheckoutOverviewPage openPage() {
         super.openPage(CHECKOUT_OVERVIEW_PAGE_URL);
         return this;
     }
 
-    @Step("Getting the quantity of {productName} to be payed for")
+    @Step("Get the quantity of {productName} displayed on the checkout [overview] page")
     public String getProductQuantity(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_QUANTITY, productName), 10);
         return driver.findElement(By.xpath(String.format(PRODUCT_QUANTITY, productName))).getText();
     }
 
-    @Step("Getting the price of {productName} displayed on the Checkout Overview Page and be payed")
+    @Step("Get the price of {productName} displayed on the checkout overview page")
     public String getProductPrice(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_PRICE, productName), 10);
         return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
     }
 
-    @Step("Getting payment information")
+    @Step("Get the payment information displayed on the checkout overview page")
     public String getPaymentInformation() {
         waitForElementDisplayed(paymentInformationField, 10);
         return paymentInformationField.getText();
     }
 
-    @Step("Getting the order price before tax")
+    @Step("Get the order price before tax displayed on the checkout overview page")
     public String getItemTotalWithoutTaxSum() {
         waitForElementDisplayed(itemTotalField, 10);
         return itemTotalField.getText();
     }
 
-    @Step("Getting the tax sum")
+    @Step("Get the tax sum displayed on the checkout overview page")
     public String getTaxSum() {
         waitForElementDisplayed(taxField, 10);
         return taxField.getText();
     }
 
-    @Step("Getting the total order price")
+    @Step("Get the total order price displayed on the checkout overview page")
     public String getTotalSum() {
         waitForElementDisplayed(totalField, 10);
         return totalField.getText();
     }
 
-    @Step("Getting the number of product items in the order")
+    @Step("Get the number of product items in the order displayed on the checkout overview page")
     public int getNumberOfItems() {
         waitForElementsDisplayed(productsInTheOrder, 10);
         return productsInTheOrder.size();
@@ -111,7 +111,7 @@ public class CheckoutOverviewPage extends HeaderMenuPage implements IPagesUrls {
         return new CheckoutCompletePage(driver);
     }
 
-    @Step("Checking that the user is automatically moved to the Checkout Overview Page having filled in valid first name, last name, and postal/zip code")
+    @Step("Check that the user is automatically moved to the checkout stage 2 [overview] page having filled in valid first name, last name, and postal/zip code")
     public WebElement getPageTitle() {
         waitForElementDisplayed(pageTitle, 10);
         return pageTitle;

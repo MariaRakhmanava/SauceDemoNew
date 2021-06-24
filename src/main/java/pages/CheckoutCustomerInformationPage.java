@@ -32,13 +32,13 @@ public class CheckoutCustomerInformationPage extends HeaderMenuPage implements I
         super(driver);
     }
 
-    @Step("Opening Checkout Stage 1 [Your Information] Page")
+    @Step("Open the checkout stage 1 [Your Information] page")
     public CheckoutCustomerInformationPage openPage() {
         super.openPage(CHECKOUT_CUSTOMER_INFO_PAGE_URL);
         return this;
     }
 
-    @Step("Filling the First Name, Last Name, Postal Code fields with {firstName}, {lastName}, {postalCode} correspondingly")
+    @Step("Fill the First Name, Last Name, Postal Code fields with {firstName}, {lastName}, {postalCode} correspondingly")
     public void enterUserInformation(CustomerInformation customerInformation) {
         waitForElementDisplayed(firstNameInput, 10);
         firstNameInput.sendKeys(customerInformation.getFirstName());
@@ -53,7 +53,7 @@ public class CheckoutCustomerInformationPage extends HeaderMenuPage implements I
         return new CartPage(driver);
     }
 
-    @Step("Getting an error message having filled not all the fields")
+    @Step("Get an error message having filled not all the fields on the checkout stage 1 [Customer Information] page")
     public String getErrorMessageText() {
         waitForElementDisplayed(errorMessage, 10);
         return errorMessage.getText();

@@ -48,13 +48,13 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
     private static final String PRODUCT_DETAILS_LINK = "//*[text()='%s']";
     private static final String PRODUCT_DESCRIPTION = "//*[contains(text(),'%s')]/ancestor::*[@class='inventory_item_description']//*[@class='inventory_item_desc']";
 
-    @Step("Opening Products Page")
+    @Step("Open the products page")
     public ProductsPage openPage() {
         super.openPage(PRODUCTS_PAGE_URL);
         return this;
     }
 
-    @Step("Adding a {productName} to the Shopping Cart")
+    @Step("Adding a {productName} to the shopping cart from the products page")
     public ProductsPage addProductToTheCart(String productName) {
         List<WebElement> listOfProductsAddedToCart = new ArrayList<>();
         waitForElementDisplayed(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName), 10);
@@ -62,7 +62,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
         return this;
     }
 
-    @Step("Adding all products on the Products Page to the Shopping Cart")
+    @Step("Add all products on the Products Page to the shopping cart")
     public ProductsPage addAllProductsToTheCart() {
         waitForElementsDisplayed(inventoryItemsNames, 10);
         for (WebElement addToCartButton : addToCartButtonsOfAllProducts) {
@@ -71,14 +71,14 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
         return this;
     }
 
-    @Step("Removing a {productName} from the Shopping Cart from the Products Page")
+    @Step("Remove a {productName} from the shopping cart on the Products Page")
     public ProductsPage removeProductFromTheCart(String productName) {
         waitForElementDisplayed(String.format(REMOVE_PRODUCT_FROM_CART_BUTTON, productName), 10);
         driver.findElement(By.xpath(String.format(REMOVE_PRODUCT_FROM_CART_BUTTON, productName))).click();
         return this;
     }
 
-    @Step("Removing all products from the Shopping Cart from the Products Page")
+    @Step("Remove all products from the shopping cart on the products page")
     public ProductsPage removeAllProductsFromTheCart() {
         waitForElementsDisplayed(inventoryItemsNames, 10);
         for (WebElement removeButton : removeButtonsOfAllProducts) {
@@ -87,19 +87,19 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
         return this;
     }
 
-    @Step("Getting a {productName} price displayed on the Products Page")
+    @Step("Get a {productName} price displayed on the products page")
     public String getProductPrice(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_PRICE, productName), 10);
         return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
     }
 
-    @Step("Getting a {productName} description displayed on the Products Page")
+    @Step("Get a {productName} description displayed on the products page")
     public String getProductDescription(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_DESCRIPTION, productName), 10);
         return driver.findElement(By.xpath(String.format(PRODUCT_DESCRIPTION, productName))).getText();
     }
 
-    @Step("Clicking on the {productName} name on the Products Page to move to the {productName} Details Page")
+    @Step("Click on the {productName} name on the products page to move to the {productName} details page")
     public void clickAndGoToProductDetailsPage(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_DETAILS_LINK, productName), 10);
         driver.findElement(By.xpath(String.format(PRODUCT_DETAILS_LINK, productName))).click();
@@ -110,7 +110,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
         return inventoryItemsNames.size();
     }
 
-    @Step("Sorting product items on the Product Page according to {sortingPrinciple}")
+    @Step("Sort product items on the product page according to {sortingPrinciple}")
     public ProductsPage setProductsSorting(String sortingPrinciple) {
         waitForElementDisplayed(sortingDropdownMenu, 10);
         Select sortingOptions = new Select(sortingDropdownMenu);
@@ -148,13 +148,13 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
         return listOfPrices;
     }
 
-    @Step("Clicking the Cart icon on the Products Page to move to the Cart Page")
+    @Step("Click the cart icon on the products page to move to the cart page")
     public CartPage goToCartPageByCartIcon() {
         super.goToCart();
         return new CartPage(driver);
     }
 
-    @Step("Checking that the user is automatically moved to the Products Page after having logged in with valid credentials")
+    @Step("Check that the user is automatically moved to the products page after having logged in with valid credentials")
     public boolean isgPageTitleElementDisplayed() {
         waitForElementDisplayed(pageTitle, 10);
         return pageTitle.isDisplayed();
