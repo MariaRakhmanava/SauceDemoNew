@@ -111,7 +111,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
     @Step("Click on the {productName} name on the products page to move to the {productName} details page")
     public void clickAndGoToProductDetailsPage(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_DETAILS_LINK, productName), 10);
-        log.info(String.format("Click on the name of: '%s' to move to the '%s' details page", productName));
+        log.info(String.format("Click on the name of: %s to move to the its details page", productName));
         driver.findElement(By.xpath(String.format(PRODUCT_DETAILS_LINK, productName))).click();
     }
 
