@@ -1,9 +1,11 @@
 package pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+@Log4j2
 abstract class HeaderMenuPage extends BasePage {
 
     @FindBy(id = "react-burger-menu-btn")
@@ -39,50 +41,59 @@ abstract class HeaderMenuPage extends BasePage {
 
     public void clickOpenMenuButton() {
         waitForElementDisplayed(openMenuButton, 10);
+        log.info("Click the open menu button");
         openMenuButton.click();
     }
 
     public void goToAllItemsSection() {
-        openMenuButton.click();
+        clickOpenMenuButton();
         waitForElementDisplayed(allItemsLink, 5);
+        log.info("Click the link All Items");
         allItemsLink.click();
     }
 
     public void goToAboutSection() {
-        openMenuButton.click();
+        clickOpenMenuButton();
         waitForElementDisplayed(aboutSidebarLink, 5);
+        log.info("Click the link About");
         aboutSidebarLink.click();
     }
 
     public void goLogoutSection() {
-        openMenuButton.click();
+        clickOpenMenuButton();
         waitForElementDisplayed(logoutSidebarLink, 5);
+        log.info("Click the link Logout");
         logoutSidebarLink.click();
     }
 
     public void goToResetAppStateSection() {
-        openMenuButton.click();
+        clickOpenMenuButton();
         waitForElementDisplayed(resetAppStateLink, 5);
+        log.info("Click the link Reset App State");
         resetAppStateLink.click();
     }
 
     public void goToCart() {
         waitForElementDisplayed(goToCartIcon, 10);
+        log.info("Click the cart icon to move to the cart page");
         goToCartIcon.click();
     }
 
     public void goToSauceLabsTwitter() {
         waitForElementDisplayed(twitterLink, 10);
+        log.info("Click the Sauce Labs Twitter link");
         twitterLink.click();
     }
 
     public void goToSauceLabsFacebook() {
         waitForElementDisplayed(facebookLink, 10);
+        log.info("Click the Sauce Labs Facebook link");
         facebookLink.click();
     }
 
     public void goToSauceLabsLinkedIn() {
         waitForElementDisplayed(linkedInLink, 10);
+        log.info("Click the Sauce Labs LinkedIn link");
         linkedInLink.click();
     }
 }

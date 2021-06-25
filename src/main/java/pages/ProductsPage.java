@@ -2,6 +2,7 @@ package pages;
 
 import consts.IPagesUrls;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+@Log4j2
 public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
 
     @FindBy(xpath = "//*[contains(text(),'Add to cart')]")
@@ -50,6 +52,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
 
     @Step("Open the products page")
     public ProductsPage openPage() {
+        log.info("Open the products page");
         super.openPage(PRODUCTS_PAGE_URL);
         return this;
     }
@@ -58,6 +61,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
     public ProductsPage addProductToTheCart(String productName) {
         List<WebElement> listOfProductsAddedToCart = new ArrayList<>();
         waitForElementDisplayed(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName), 10);
+        log.info(String.format("Click the ADD TO CART button of: '%s' on the products page", productName));
         driver.findElement(By.xpath(String.format(ADD_PRODUCT_TO_CART_BUTTON, productName))).click();
         return this;
     }
@@ -65,6 +69,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
     @Step("Add all products on the Products Page to the shopping cart")
     public ProductsPage addAllProductsToTheCart() {
         waitForElementsDisplayed(inventoryItemsNames, 10);
+        log.info("Click all the ADD TO CART buttons of all products displayed on the products page");
         for (WebElement addToCartButton : addToCartButtonsOfAllProducts) {
             addToCartButton.click();
         }
@@ -74,6 +79,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
     @Step("Remove a {productName} from the shopping cart on the Products Page")
     public ProductsPage removeProductFromTheCart(String productName) {
         waitForElementDisplayed(String.format(REMOVE_PRODUCT_FROM_CART_BUTTON, productName), 10);
+        log.info(String.format("Click REMOVE button of: '%s' displayed on the products page", productName));
         driver.findElement(By.xpath(String.format(REMOVE_PRODUCT_FROM_CART_BUTTON, productName))).click();
         return this;
     }
@@ -81,6 +87,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
     @Step("Remove all products from the shopping cart on the products page")
     public ProductsPage removeAllProductsFromTheCart() {
         waitForElementsDisplayed(inventoryItemsNames, 10);
+        log.info("Click all the REMOVE buttons of all products displayed on the products page");
         for (WebElement removeButton : removeButtonsOfAllProducts) {
             removeButton.click();
         }
@@ -90,24 +97,28 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
     @Step("Get a {productName} price displayed on the products page")
     public String getProductPrice(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_PRICE, productName), 10);
+        log.info(String.format("Get the price of: '%s' displayed on the products page", productName));
         return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
     }
 
     @Step("Get a {productName} description displayed on the products page")
     public String getProductDescription(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_DESCRIPTION, productName), 10);
+        log.info(String.format("Get the description of: '%s' displayed on the products page", productName));
         return driver.findElement(By.xpath(String.format(PRODUCT_DESCRIPTION, productName))).getText();
     }
 
     @Step("Click on the {productName} name on the products page to move to the {productName} details page")
     public void clickAndGoToProductDetailsPage(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_DETAILS_LINK, productName), 10);
+        log.info(String.format("Click on the name of: '%s' to move to the '%s' details page", productName));
         driver.findElement(By.xpath(String.format(PRODUCT_DETAILS_LINK, productName))).click();
     }
 
     @Step("Get the product portfolio displayed on the products page")
     public int getTheNumberOfProductsOffered() {
         waitForElementsDisplayed(inventoryItemsNames, 10);
+        log.info("Get the size of the array list of all products displayed on the products page");
         return inventoryItemsNames.size();
     }
 
@@ -135,6 +146,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
     public List<String> getListOfProductsNames() {
         waitForElementsDisplayed(inventoryItemsNames, 10);
         List<String> listOfNames = new ArrayList<>(6);
+        log.info("Get the array list of all products' names displayed on the products page");
         for (WebElement item : inventoryItemsNames) {
             listOfNames.add(item.getText());
         }
@@ -145,6 +157,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
     public List<String> getListOfProductsPrices() {
         waitForElementsDisplayed(productsPrices, 10);
         List<String> listOfPrices = new ArrayList<>(6);
+        log.info("Get the array list of all products' prices displayed on the products page");
         for (WebElement item : productsPrices) {
             listOfPrices.add(item.getText());
         }
@@ -160,6 +173,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
     @Step("Check that the user is automatically moved to the products page after having logged in with valid credentials")
     public boolean isgPageTitleElementDisplayed() {
         waitForElementDisplayed(pageTitle, 10);
+        log.info("Get the products page title web element, locator: " + pageTitle);
         return pageTitle.isDisplayed();
     }
 

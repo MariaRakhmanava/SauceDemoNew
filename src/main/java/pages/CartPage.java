@@ -2,6 +2,7 @@ package pages;
 
 import consts.IPagesUrls;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+@Log4j2
 public class CartPage extends HeaderMenuPage implements IPagesUrls {
 
     @FindBy(xpath = "//*[@class='cart_item']")
@@ -34,6 +36,7 @@ public class CartPage extends HeaderMenuPage implements IPagesUrls {
 
     @Step("Open the cart page")
     public CartPage openPage() {
+        log.info("Open the cart page");
         super.openPage(CART_PAGE_URL);
         return this;
     }
@@ -41,18 +44,21 @@ public class CartPage extends HeaderMenuPage implements IPagesUrls {
     @Step("Get the {productName} price displayed on the cart page")
     public String getProductPrice(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_PRICE, productName), 10);
+        log.info(String.format("Get the price of: '%s' displayed on the cart page", productName));
         return driver.findElement(By.xpath(String.format(PRODUCT_PRICE, productName))).getText();
     }
 
     @Step("Get the number of {productName} displayed on the cart page")
     public String getProductQuantity(String productName) {
         waitForElementDisplayed(String.format(PRODUCT_QUANTITY, productName), 10);
+        log.info(String.format("Get the quantity of: '%s' displayed on the cart page", productName));
         return driver.findElement(By.xpath(String.format(PRODUCT_QUANTITY, productName))).getText();
     }
 
     @Step("Remove {productName} from the shopping cart on the cart page")
     public CartPage removeProductFromTheCart(String productName) {
         waitForElementDisplayed(String.format(REMOVE_BUTTON, productName), 10);
+        log.info(String.format("Click the REMOVE button of: '%s' from the cart", productName));
         driver.findElement(By.xpath(String.format(REMOVE_BUTTON, productName))).click();
         return this;
     }
@@ -60,6 +66,7 @@ public class CartPage extends HeaderMenuPage implements IPagesUrls {
     @Step("Remove all products from the shopping cart on the cart page")
     public CartPage removeAllProductsFromTheCart() {
         waitForElementsDisplayed(productsInTheCart, 10);
+        log.info("Click the REMOVE button of all products displayed on the cart page");
         for (WebElement removeButtonOfProductInTheCart : removeButtonsOfProductsInTheCart) {
             removeButtonOfProductInTheCart.click();
         }
@@ -68,18 +75,21 @@ public class CartPage extends HeaderMenuPage implements IPagesUrls {
 
     public ProductsPage clickContinueShoppingButton() {
         waitForElementDisplayed(continueShoppingButton, 10);
+        log.info("Click the CONTINUE button on the cart page");
         continueShoppingButton.click();
         return new ProductsPage(driver);
     }
 
     public CheckoutCustomerInformationPage clickCheckoutButton() {
         waitForElementDisplayed(checkoutButton, 10);
+        log.info("Click the CHECKOUT button displayed on the cart page");
         checkoutButton.click();
         return new CheckoutCustomerInformationPage(driver);
     }
 
     @Step("Get the number of products that have been added to the shopping cart from the cart page")
     public int getNumberOfItems() {
+        log.info("Get the products' array list size on the cart page");
         try {
             waitForElementsDisplayed(productsInTheCart, 10);
             return productsInTheCart.size();
@@ -91,6 +101,7 @@ public class CartPage extends HeaderMenuPage implements IPagesUrls {
     @Step("Get the list of products' names that have been added to the shopping cart from the cart page")
     public List<String> getListOfProductsAddedToCart() {
         By locatorToChooseAllItems = By.xpath(PRODUCT_ITEM);
+        log.info("Get the array list of products' names on the cart page");
         try {
             waitForElementsDisplayed(locatorToChooseAllItems, 10);
             List<WebElement> items = driver.findElements(locatorToChooseAllItems);
