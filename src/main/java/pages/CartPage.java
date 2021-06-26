@@ -100,17 +100,20 @@ public class CartPage extends HeaderMenuPage implements IPagesUrls {
 
     @Step("Get the list of products' names that have been added to the shopping cart from the cart page")
     public List<String> getListOfProductsAddedToCart() {
-        By locatorToChooseAllItems = By.xpath(PRODUCT_ITEM);
-        log.info("Get the array list of products' names on the cart page");
+        By locatorToChooseAllProducts = By.xpath(PRODUCT_ITEM);
         try {
-            waitForElementsDisplayed(locatorToChooseAllItems, 10);
-            List<WebElement> items = driver.findElements(locatorToChooseAllItems);
+            waitForElementsDisplayed(locatorToChooseAllProducts, 10);
+            log.info("Find web elements: products on the cart page by locator: " + PRODUCT_ITEM + "and collect them into the array list: products");
+            List<WebElement> products = driver.findElements(locatorToChooseAllProducts);
+            log.info("Create an array list: products names");
             List<String> productsNames = new ArrayList<>();
-            for (WebElement product : items) {
+            log.info("Extract products' names from the array list of web elements: products to the array list: products names");
+            for (WebElement product : products) {
                 productsNames.add(product.getText());
             }
             return productsNames;
         } catch (TimeoutException e){
+            log.warn("Time is out, no products have been found so an empty array list for products has been created");
             List<String> emptyList = new ArrayList<>();
             return emptyList;
         }

@@ -1,20 +1,11 @@
 package objects;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public class Product {
-
-    String productItemName;
-    String productPrice;
-
-    public Product(String productItemName, String productPrice) {
-        this.productItemName = productItemName;
-        this.productPrice = productPrice;
-    }
-
-    public String getProductName() {
-        return productItemName;
-    }
-
-    public String getProductPrice() {
-        return productPrice;
-    }
+    private String productName;
+    private String productPrice;
 }
