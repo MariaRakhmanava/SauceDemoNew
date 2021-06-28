@@ -64,7 +64,7 @@ public class CheckoutCustomerInformationPage extends HeaderMenuPage implements I
     @Step("Get an error message having filled not all the fields on the checkout stage 1 [Customer Information] page")
     public String getErrorMessageText() {
         waitForElementDisplayed(errorMessage, 10);
-        log.info("Get an error message text due to omitted field while entering customer information");
+        log.info("Get an error message text due to omitted field \nwhile entering customer information");
         return errorMessage.getText();
     }
 }

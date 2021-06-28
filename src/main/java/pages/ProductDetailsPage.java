@@ -41,7 +41,7 @@ public class ProductDetailsPage extends HeaderMenuPage {
     @Step("Get a {productName} description displayed on the {productName} details page")
     public String getProductDescription(String productName) {
         waitForElementDisplayed(productDescription, 10);
-        log.info(String.format("Get the description of the product: '%s' displayed on the '%s' details page", productName, productName));
+        log.info(String.format("Get the description of the product: '%s' \ndisplayed on the '%s' details page", productName, productName));
         return productDescription.getText();
     }
 

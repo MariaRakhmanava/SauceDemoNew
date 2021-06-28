@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest implements ITestConstants {
     @Test(description = "Login validation check")
-    public void loginWithValidDataTest() {
+    public void loginWithValidCredentialsTest() {
         loginSteps.loginAndAppearOnProductsPage(VALID_USERNAME, VALID_PASSWORD);
         Assert.assertTrue(productsPage.isgPageTitleElementDisplayed());
     }

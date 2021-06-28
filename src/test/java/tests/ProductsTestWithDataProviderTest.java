@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class ProductsTestWithDataProviderTest extends BaseTest implements ITestConstants {
 
-    @DataProvider(name = "Data about products offered")
+    @DataProvider(name = "Data about products")
     public Object[][] listOfProductsOffered() {
         return new Object[][]{
                 {"Sauce Labs Backpack", "$29.99"},
@@ -19,16 +19,7 @@ public class ProductsTestWithDataProviderTest extends BaseTest implements ITestC
         };
     }
 
-    @Test
-    public void checkProductsRangeTest() {
-        loginSteps
-                .loginAndAppearOnProductsPage(VALID_USERNAME, VALID_PASSWORD)
-                .waitForPageLoaded()
-                .setProductsSorting(BY_PRICE_HIGH_TO_LOW_PRODUCTS_SORTING_PRINCIPLE);
-        Assert.assertEquals(productsPage.getTheNumberOfProductsOffered(), 6);
-    }
-
-    @Test(dataProvider = "Data about products offered")
+    @Test(dataProvider = "Data about products")
     public void compareProductsNamesToThoseInDatabaseTest(String productName, String productPrice) {
         loginSteps
                 .loginAndAppearOnProductsPage(VALID_USERNAME, VALID_PASSWORD)
@@ -38,7 +29,7 @@ public class ProductsTestWithDataProviderTest extends BaseTest implements ITestC
         }
     }
 
-    @Test(dataProvider = "Data about products offered")
+    @Test(dataProvider = "Data about products")
     public void compareProductsPricesToThoseInDatabaseTest(String productName, String productPrice) {
         loginSteps
                 .loginAndAppearOnProductsPage(VALID_USERNAME, VALID_PASSWORD)

@@ -3,6 +3,7 @@ package pages;
 import consts.IPagesUrls;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
+import objects.Product;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -173,7 +174,7 @@ public class ProductsPage extends HeaderMenuPage implements IPagesUrls {
     @Step("Check that the user is automatically moved to the products page after having logged in with valid credentials")
     public boolean isgPageTitleElementDisplayed() {
         waitForElementDisplayed(pageTitle, 10);
-        log.info("Get the products page title web element, locator: " + pageTitle);
+        log.info("Get the products page title web element for checking \nthe user is automatically moved to the products page after having logged in on the login page");
         return pageTitle.isDisplayed();
     }
 

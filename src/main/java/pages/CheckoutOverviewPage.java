@@ -105,7 +105,7 @@ public class CheckoutOverviewPage extends HeaderMenuPage implements IPagesUrls {
     @Step("Get the number of product items in the order displayed on the checkout overview page")
     public int getNumberOfItems() {
         waitForElementsDisplayed(productsInTheOrder, 10);
-        log.info("Get the number of product items in the order displayed on the Checkout Overview page");
+        log.info("Get the number of products in the order displayed on the Checkout Overview page");
         return productsInTheOrder.size();
     }
 

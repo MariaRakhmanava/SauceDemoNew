@@ -1,10 +1,10 @@
 package objects;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
 @AllArgsConstructor
-@Getter
+@Data
 public class Product {
     private String productName;
     private String productPrice;
